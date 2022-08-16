@@ -1,4 +1,5 @@
 import * as SecureStore from 'expo-secure-store'
+import { display } from 'lib'
 import { isHex } from 'lib/isHex'
 import { getKeysForMnemonic, getKeysForNsec, hexToNsec } from 'lib/nostr'
 import { Alert } from 'react-native'
@@ -6,7 +7,6 @@ import { UserStore } from '../user-store'
 
 export const login = async (self: UserStore, text: string) => {
   const loginWithMnemonic = async (mnemonic: string) => {
-    console.log('LOGGING IN WITH MNEMONIC', mnemonic)
     const { privateKey, publicKey } = getKeysForMnemonic(mnemonic)
     const newAccountKeys: AccountKeys = { mnemonic, privateKey, publicKey }
     self.setMnemonic(mnemonic)
@@ -17,14 +17,23 @@ export const login = async (self: UserStore, text: string) => {
       await SecureStore.setItemAsync('ARCADE_NPUB', newAccountKeys.publicKey)
       await SecureStore.setItemAsync('ARCADE_NSEC', newAccountKeys.privateKey)
       await SecureStore.setItemAsync('ARCADE_MNEMONIC', newAccountKeys.mnemonic as string)
+      display({
+        name: 'login',
+        preview: 'Logged in and persisted to secure storage',
+        value: newAccountKeys,
+      })
+    } else {
+      display({
+        name: 'login',
+        preview: 'Logged in, but no secure storage available',
+        value: newAccountKeys,
+      })
     }
   }
 
   const loginWithNsec = async (nsec: string) => {
-    console.log('LOGGING IN WITH NSEC', nsec)
     const { privateKey, publicKey } = getKeysForNsec(nsec)
     const newAccountKeys: AccountKeys = { privateKey, publicKey }
-    console.log('newAccountKeys', newAccountKeys)
     self.setPrivateKey(privateKey)
     self.setPublicKey(publicKey)
     const storeAvailable = await SecureStore.isAvailableAsync()

@@ -23,6 +23,11 @@ export const UserStoreModel = types
       self.publicKey = publicKey
     },
   }))
+  .views((self) => ({
+    get isAuthed(): boolean {
+      return !!self.privateKey
+    },
+  }))
 
 type UserStoreType = Instance<typeof UserStoreModel>
 export interface UserStore extends UserStoreType {}
