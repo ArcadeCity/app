@@ -1,7 +1,7 @@
 import { StatusBar } from 'expo-status-bar'
 import { useCachedResources, useExpoUpdates } from 'lib/hooks'
-import { View } from 'react-native'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
+import Navigation from './navigation'
 
 export const App = () => {
   const isLoadingComplete = useCachedResources()
@@ -11,7 +11,7 @@ export const App = () => {
   }
   return (
     <SafeAreaProvider>
-      <View style={{ flex: 1, backgroundColor: 'blue' }} />
+      <Navigation />
       <StatusBar style='light' />
     </SafeAreaProvider>
   )
