@@ -1,15 +1,24 @@
+import { useEffect, useState } from 'react'
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { FadeInMap } from 'views/map'
 import { palette, spacing } from 'views/theme'
 import { Button } from './Button'
+import { Filter } from './Filter'
 import { Logo } from './Logo'
 
 export const HomeScreen = ({ navigation }) => {
+  const [show, setShow] = useState(true)
+  useEffect(() => {
+    setTimeout(() => {
+      setShow(false)
+    }, 5000)
+  }, [])
   return (
     <View style={styles.container}>
-      <View style={styles.containerLogo}>
+      <View style={styles.containerFadeout}>{show && <Filter />}</View>
+      {/* <View style={styles.containerLogo}>
         <Logo />
-      </View>
+      </View> */}
       <FadeInMap />
       <View style={styles.containerButton}>
         <Button width={300} height={70} onPress={() => console.log('Join')}>
@@ -27,6 +36,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'transparent',
+  },
+  containerFadeout: {
+    flex: 1,
+    position: 'absolute',
+    zIndex: 9999,
   },
   containerLogo: {
     backgroundColor: 'transparent',
