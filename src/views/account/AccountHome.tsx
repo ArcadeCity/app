@@ -7,7 +7,7 @@ export const AccountHome = () => {
   const { user } = useStores()
   return (
     <View style={styles.container}>
-      <Button title='Log out' onPress={user.logout} />
+      <Button title='Log out' onPress={() => user.logout()} />
     </View>
   )
 }

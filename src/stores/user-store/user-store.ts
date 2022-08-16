@@ -13,7 +13,7 @@ export const UserStoreModel = types
   .extend(withRootStore)
   .actions((self) => ({
     login: async (text: string): Promise<boolean> => await actions.login(self as UserStore, text),
-    logout: async (text: string): Promise<boolean> => await actions.logout(self as UserStore),
+    logout: async (): Promise<void> => await actions.logout(self as UserStore),
     setMnemonic(mnemonic: string) {
       self.mnemonic = mnemonic
     },
