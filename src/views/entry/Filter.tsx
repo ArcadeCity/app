@@ -18,7 +18,7 @@ export const Filter = () => {
   }, [progress])
 
   useSharedValueEffect(() => {
-    x.current = mix(progress.value, 0, 100)
+    x.current = mix(progress.value, 0, 15)
   }, progress) // you can pass other shared values as extra parameters
 
   const { width, height } = useWindowDimensions()
