@@ -10,26 +10,26 @@ import { RootStackParamList } from './types'
 
 const linking: LinkingOptions<RootStackParamList> = {
   prefixes: [Linking.createURL('/')],
-  config: {
-    screens: {
-      Root: {
-        screens: {
-          TabOne: {
-            screens: {
-              TabOneScreen: 'one',
-            },
-          },
-          TabTwo: {
-            screens: {
-              AccountScreen: 'two',
-            },
-          },
-        },
-      },
-      Modal: 'modal',
-      NotFound: '*',
-    },
-  },
+  // config: {
+  //   screens: {
+  //     Root: {
+  //       screens: {
+  //         TabOne: {
+  //           screens: {
+  //             TabOneScreen: 'one',
+  //           },
+  //         },
+  //         TabTwo: {
+  //           screens: {
+  //             AccountScreen: 'two',
+  //           },
+  //         },
+  //       },
+  //     },
+  //     Modal: 'modal',
+  //     NotFound: '*',
+  //   },
+  // },
 }
 
 export default linking
