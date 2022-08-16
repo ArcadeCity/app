@@ -1,7 +1,9 @@
 import React from 'react'
 import { Placeholder } from 'views/dev'
 import { HomeScreen } from 'views/entry/HomeScreen'
+import { LoginScreen } from 'views/login/LoginScreen'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import { stackOptions } from './stackOptions'
 
 const Stack = createNativeStackNavigator<{
   home: undefined
@@ -22,8 +24,8 @@ export function UnauthedNavigator() {
       <Stack.Group screenOptions={{ presentation: 'modal' }}>
         <Stack.Screen
           name='login'
-          component={Placeholder}
-          options={{ title: 'Log in with access code' }}
+          component={LoginScreen}
+          options={{ ...stackOptions, title: 'Enter access code' }}
         />
       </Stack.Group>
     </Stack.Navigator>
