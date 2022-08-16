@@ -1,3 +1,4 @@
+import { MotiView } from 'moti'
 import { useEffect, useState } from 'react'
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { FadeInMap } from 'views/map'
@@ -15,10 +16,24 @@ export const HomeScreen = ({ navigation }) => {
   }, [])
   return (
     <View style={styles.container}>
-      <View style={styles.containerFadeout}>{show && <Filter />}</View>
-      {/* <View style={styles.containerLogo}>
+      <View style={styles.containerFadeout} pointerEvents='none'>
+        {show && <Filter />}
+      </View>
+      <MotiView
+        style={styles.containerLogo}
+        delay={2500}
+        transition={{
+          type: 'timing',
+          duration: 2500,
+        }}
+        from={{
+          opacity: 0,
+        }}
+        animate={{
+          opacity: 1,
+        }}>
         <Logo />
-      </View> */}
+      </MotiView>
       <FadeInMap />
       <View style={styles.containerButton}>
         <Button width={300} height={70} onPress={() => console.log('Join')}>
