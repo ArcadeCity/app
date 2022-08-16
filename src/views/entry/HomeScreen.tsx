@@ -1,14 +1,24 @@
-import { StyleSheet, View } from 'react-native'
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { FadeInMap } from 'views/map'
+import { palette, spacing } from 'views/theme'
+import { Button } from './Button'
 import { Logo } from './Logo'
 
-export const HomeScreen = () => {
+export const HomeScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <View style={styles.containerLogo}>
         <Logo />
       </View>
       <FadeInMap />
+      <View style={styles.containerButton}>
+        <Button width={300} height={70} onPress={() => console.log('Join')}>
+          <Text style={styles.textJoin}>JOIN ARCADE CITY</Text>
+        </Button>
+        <TouchableOpacity activeOpacity={0.8} onPress={() => navigation.navigate('login')}>
+          <Text style={styles.textLogin}>Enter access code</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   )
 }
@@ -28,5 +38,32 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     zIndex: 9000,
+  },
+  containerButton: {
+    backgroundColor: 'transparent',
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    bottom: 50,
+    justifyContent: 'center',
+    alignItems: 'center',
+    zIndex: 9010,
+  },
+  textJoin: {
+    color: palette.moonRaker,
+    fontFamily: 'Courier New',
+    fontSize: 20,
+    letterSpacing: 2,
+    textAlign: 'center',
+    fontWeight: '700',
+  },
+  textLogin: {
+    color: palette.blueBell,
+    fontFamily: 'Courier New',
+    fontSize: 16,
+    letterSpacing: 0.5,
+    padding: spacing[4],
+    textAlign: 'center',
+    fontWeight: '500',
   },
 })
