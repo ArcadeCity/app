@@ -1,18 +1,27 @@
 {
-  "name": "app",
-  "version": "1.0.0",
-  "main": "node_modules/expo/AppEntry.js",
+  "name": "@arcadecity/app",
+  "description": "The Bitcoin gig economy",
+  "version": "6.0.0",
+  "repository": "git@github.com:ArcadeCity/arcade.git",
+  "author": "Christopher David <chris@arcade.city>",
+  "license": "CC0-1.0",
+  "main": "index.js",
   "scripts": {
     "start": "expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "test": "jest --watchAll"
+    "test": "jest --watchAll",
+    "build:ios": "eas build -p ios",
+    "build:ios:local": "eas build --platform ios --local",
+    "publish:ios": "eas update --branch production -p ios --message 'Update'"
   },
   "jest": {
     "preset": "jest-expo"
   },
   "dependencies": {
+    "@expo-google-fonts/inter": "^0.2.2",
+    "@expo-google-fonts/lexend": "^0.2.2",
     "@expo/vector-icons": "^13.0.0",
     "@react-navigation/bottom-tabs": "^6.0.5",
     "@react-navigation/native": "^6.0.2",
@@ -25,6 +34,7 @@
     "expo-splash-screen": "~0.16.1",
     "expo-status-bar": "~1.4.0",
     "expo-system-ui": "~1.3.0",
+    "expo-updates": "~0.14.4",
     "expo-web-browser": "~11.0.0",
     "react": "18.0.0",
     "react-dom": "18.0.0",
