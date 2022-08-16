@@ -5,7 +5,7 @@ import { useEffect, useMemo, useState } from 'react'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
 import { RootStore, RootStoreProvider, setupRootStore } from 'stores/root-store'
 import { LoadSplash } from 'views/loading'
-import Navigation from './navigation'
+import { Navigation } from './navigation'
 
 export const App = () => {
   const [rootStore, setRootStore] = useState<RootStore | undefined>(undefined)

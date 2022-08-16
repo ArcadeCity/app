@@ -1,5 +1,6 @@
 import React from 'react'
 import { Pressable, View, ViewStyle } from 'react-native'
+import { AccountHome } from 'views/account/AccountHome'
 // import { FeedHome } from 'views/feed/FeedHome'
 // import { MapHome } from 'views/map/MapHome'
 import { Placeholder } from 'views/dev'
@@ -82,9 +83,9 @@ export function BottomTabNavigator() {
           ),
         })}
       />
-      {/* <BottomTab.Screen
+      <BottomTab.Screen
         name='WalletHome'
-        component={AccountHome}
+        component={Placeholder}
         options={{
           title: 'Account',
           tabBarIcon: ({ color, focused }) => (
@@ -100,8 +101,8 @@ export function BottomTabNavigator() {
             fontFamily: typography.secondary,
           },
         }}
-      /> */}
-      {/* <BottomTab.Screen
+      />
+      <BottomTab.Screen
         name='AccountHome'
         component={AccountHome}
         options={{
@@ -119,7 +120,7 @@ export function BottomTabNavigator() {
             fontFamily: typography.secondary,
           },
         }}
-      /> */}
+      />
     </BottomTab.Navigator>
   )
 }

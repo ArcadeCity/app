@@ -1,4 +1,4 @@
-import { Instance, SnapshotOut, types } from 'mobx-state-tree'
+import { applySnapshot, Instance, SnapshotOut, types } from 'mobx-state-tree'
 import { withEnvironment, withRootStore } from '../_extensions'
 import * as actions from './user-actions'
 
@@ -13,6 +13,7 @@ export const UserStoreModel = types
   .extend(withRootStore)
   .actions((self) => ({
     login: async (text: string): Promise<boolean> => await actions.login(self as UserStore, text),
+    logout: async (text: string): Promise<boolean> => await actions.logout(self as UserStore),
     setMnemonic(mnemonic: string) {
       self.mnemonic = mnemonic
     },
@@ -21,6 +22,9 @@ export const UserStoreModel = types
     },
     setPublicKey(publicKey: string) {
       self.publicKey = publicKey
+    },
+    reset() {
+      applySnapshot(self, {})
     },
   }))
   .views((self) => ({
