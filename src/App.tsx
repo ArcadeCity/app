@@ -1,5 +1,5 @@
+import 'text-encoding-polyfill'
 import { StatusBar } from 'expo-status-bar'
-import { delay } from 'lib/delay'
 import { useCachedResources, useExpoUpdates } from 'lib/hooks'
 import { useEffect, useMemo, useState } from 'react'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
