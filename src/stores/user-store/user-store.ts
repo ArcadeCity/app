@@ -12,7 +12,16 @@ export const UserStoreModel = types
   .extend(withEnvironment)
   .extend(withRootStore)
   .actions((self) => ({
-    login: async (): Promise<boolean> => await actions.login(self as UserStore),
+    login: async (text: string): Promise<boolean> => await actions.login(self as UserStore, text),
+    setMnemonic(mnemonic: string) {
+      self.mnemonic = mnemonic
+    },
+    setPrivateKey(privateKey: string) {
+      self.privateKey = privateKey
+    },
+    setPublicKey(publicKey: string) {
+      self.publicKey = publicKey
+    },
   }))
 
 type UserStoreType = Instance<typeof UserStoreModel>
