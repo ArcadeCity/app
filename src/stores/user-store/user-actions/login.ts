@@ -1,6 +1,6 @@
 import * as SecureStore from 'expo-secure-store'
 import { isHex } from 'lib/isHex'
-import { hexToNsec } from 'lib/nostr'
+import { getKeysForMnemonic, getKeysForNsec, hexToNsec } from 'lib/nostr'
 import { Alert } from 'react-native'
 import { UserStore } from '../user-store'
 
