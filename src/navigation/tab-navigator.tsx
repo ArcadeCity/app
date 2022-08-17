@@ -18,7 +18,7 @@ const BottomTab = createBottomTabNavigator<RootTabParamList>()
 export function BottomTabNavigator() {
   return (
     <BottomTab.Navigator
-      initialRouteName='MapHome'
+      initialRouteName='FeedHome'
       screenOptions={{
         tabBarActiveTintColor: palette.moonRaker,
         tabBarInactiveTintColor: palette.blueBell,
@@ -30,7 +30,7 @@ export function BottomTabNavigator() {
           paddingTop: 10,
         },
       }}>
-      <BottomTab.Screen
+      {/* <BottomTab.Screen
         name='MapHome'
         component={Placeholder}
         options={{
@@ -49,7 +49,7 @@ export function BottomTabNavigator() {
             fontFamily: typography.secondary,
           },
         }}
-      />
+      /> */}
       <BottomTab.Screen
         name='FeedHome'
         component={Placeholder}

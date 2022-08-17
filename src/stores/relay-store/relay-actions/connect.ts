@@ -14,14 +14,9 @@ export const connect = async (self: RelayStore) => {
   })
   await self.env.nostr.connect(publicKey, privateKey)
 
-  // example callback function for a subscription
   function onEvent(event: any, relay: string) {
     try {
-      display({
-        name: 'relay.connect',
-        preview: `Received event from ${relay}`,
-        value: event,
-      })
+      console.log(`Received event from ${relay}, id ${event.id}`)
       const eventModel = self.rootStore.relay.events.get(event.id)
       if (!eventModel) {
         self.rootStore.relay.addEvent(event)
@@ -31,5 +26,6 @@ export const connect = async (self: RelayStore) => {
     }
   }
 
-  self.env.nostr.pool.sub({ cb: onEvent, filter: { kinds: [40, 41, 42], limit: 5 } })
+  self.env.nostr.pool.sub({ cb: onEvent, filter: { kinds: [1], limit: 15 } })
+  // self.env.nostr.pool.sub({ cb: onEvent, filter: { kinds: [40, 41, 42], limit: 5 } })
 }
