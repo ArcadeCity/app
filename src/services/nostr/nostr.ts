@@ -14,6 +14,7 @@ export class Nostr {
     this.privateKey = privateKey
     this.pool.setPrivateKey(privateKey)
     this.pool.addRelay('wss://relay.damus.io', { read: true, write: true })
+    // this.createDummyChannels()
   }
 
   async publish(eventObject: NostrEventToSerialize) {
@@ -40,5 +41,47 @@ export class Nostr {
     }
     console.log('publishing event', event)
     this.publish(event)
+  }
+
+  async createDummyChannels() {
+    if (!this.publicKey) return
+    const channels = [
+      {
+        name: 'Bitcoin',
+        about: 'Talk about Bitcoin.',
+        picture: 'https://arcade.city/img/bitcoin.png',
+      },
+      {
+        name: 'Ridesharing',
+        about: 'Talk about ridesharing.',
+        picture: 'https://arcade.city/img/bitcoincar.png',
+      },
+      {
+        name: 'World Chat',
+        about: 'Talk about anything.',
+        picture: 'https://arcade.city/img/earth.png',
+      },
+      {
+        name: 'Arcade City',
+        about: 'Talk about this app.',
+        picture: 'https://arcade.city/img/emails/rides.png',
+      },
+    ]
+    const date = new Date()
+    const dateTimeInSeconds = Math.floor(date.getTime() / 1000)
+    channels.forEach((channel) => {
+      const event: NostrEventToSerialize = {
+        content: JSON.stringify({
+          about: channel.about,
+          name: channel.name,
+          picture: channel.picture,
+        }),
+        created_at: dateTimeInSeconds,
+        kind: 40,
+        pubkey: this.publicKey as string,
+        tags: [],
+      }
+      this.publish(event)
+    })
   }
 }

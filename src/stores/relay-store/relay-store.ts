@@ -33,14 +33,20 @@ export const RelayStoreModel = types
     get channels() {
       const events = values(self.events) as any
       return events
+        .filter(
+          (event: Event) =>
+            event.pubkey === '72e40635ef243ce4937b0083593af773d35487b3b5147f47d4d62576e97cd2f9'
+        )
+        .filter((event: Event) => event.created_at >= 1660780018)
         .filter((event: Event) => event.kind === 40)
         .map((event: Event) => {
           const channelInfo = JSON.parse(event.content)
-          const { name, about } = channelInfo
+          const { about, name, picture } = channelInfo
           return {
             ...event,
             name,
             about,
+            picture,
           }
         })
     },

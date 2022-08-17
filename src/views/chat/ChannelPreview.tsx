@@ -15,7 +15,9 @@ interface ChannelPreviewProps {
 }
 
 export const ChannelPreview = ({ channel }: ChannelPreviewProps) => {
+  console.log(channel)
   const navigation = useNavigation()
+  // const content = JSON.parse(channel.)
   const picture =
     channel?.picture && channel?.picture?.length > 4
       ? channel.picture
