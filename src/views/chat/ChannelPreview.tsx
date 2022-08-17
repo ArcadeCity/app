@@ -1,7 +1,7 @@
 import React from 'react'
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
-import { color, palette, spacing } from '../theme'
+import { color, palette, spacing, typography } from '../theme'
 
 interface Channel {
   about: string
@@ -44,6 +44,7 @@ const styles = StyleSheet.create({
   channelName: {
     color: palette.moonRaker,
     // fontFamily: typography.secondary,
+    fontWeight: '700',
     textAlign: 'left',
     paddingHorizontal: spacing[2],
     paddingTop: 1,
