@@ -45,5 +45,6 @@ export function verifySignature(event) {
 }
 
 export async function signEvent(event, key) {
+  console.log('signing event w key:', event, key)
   return Buffer.from(await secp256k1.schnorr.sign(getEventHash(event), key)).toString('hex')
 }

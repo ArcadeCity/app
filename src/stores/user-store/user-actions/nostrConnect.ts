@@ -2,7 +2,7 @@ import { display } from 'lib'
 import { UserStore } from '../user-store'
 
 export const nostrConnect = async (self: UserStore) => {
-  if (!self.privateKey) {
+  if (!self.publicKey || !self.privateKey) {
     throw new Error('No private key')
   }
   display({

@@ -134,6 +134,7 @@ export function relayPool() {
 
         if (globalPrivateKey) {
           event.sig = await signEvent(event, globalPrivateKey)
+          console.log('sig:', event.sig)
         } else if (globalSigningFunction) {
           event.sig = await globalSigningFunction(event)
           if (!event.sig) {
@@ -141,7 +142,6 @@ export function relayPool() {
             return
           } else {
             // check
-            console.log('attempting to verifysignature ok')
             if (!(await verifySignature(event)))
               throw new Error('signature provided by custom signing function is invalid.')
           }

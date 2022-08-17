@@ -48,13 +48,16 @@ export class Nostr {
 
   async publishTestEvent() {
     if (!this.publicKey) return
+    const date = new Date()
+    const dateTimeInSeconds = Math.floor(date.getTime() / 1000)
     const event: NostrEventToSerialize = {
       content: 'Hello!',
-      created_at: Date.now(),
-      kind: 42,
+      created_at: dateTimeInSeconds,
+      kind: 1,
       pubkey: this.publicKey,
       tags: [],
     }
+    console.log('publishing event', event)
     this.publish(event)
   }
 }

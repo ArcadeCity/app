@@ -113,7 +113,7 @@ export function relayConnect(url, onNotice = () => {}, onError = () => {}) {
 
   async function trySend(params) {
     let msg = JSON.stringify(params)
-
+    console.log('sending:', msg)
     await untilOpen
     ws.send(msg)
   }
