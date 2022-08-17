@@ -1,6 +1,7 @@
 import React from 'react'
 import { Pressable, View, ViewStyle } from 'react-native'
 import { AccountHome } from 'views/account/AccountHome'
+import { ChatHome } from 'views/chat/ChatHome'
 // import { MapHome } from 'views/map/MapHome'
 import { Placeholder } from 'views/dev'
 import { FeedHome } from 'views/feed/FeedHome'
@@ -30,14 +31,13 @@ export function BottomTabNavigator() {
           paddingTop: 10,
         },
       }}>
-      {/* <BottomTab.Screen
-        name='MapHome'
-        component={Placeholder}
+      <BottomTab.Screen
+        name='ChatHome'
+        component={ChatHome}
         options={{
-          title: 'Map',
           headerShown: false,
           tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name='globe-americas' color={color} focused={focused} />
+            <TabBarIcon name='stream' color={color} focused={focused} /> // list-ul
           ),
           headerStyle: {
             backgroundColor: color.tabbar,
@@ -49,14 +49,14 @@ export function BottomTabNavigator() {
             fontFamily: typography.secondary,
           },
         }}
-      /> */}
+      />
       <BottomTab.Screen
         name='FeedHome'
         component={FeedHome}
         options={({ navigation }: RootTabScreenProps<'FeedHome'>) => ({
           title: 'Feed',
           tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name='list-ul' color={color} focused={focused} />
+            <TabBarIcon name='globe-americas' color={color} focused={focused} />
           ),
           headerStyle: {
             backgroundColor: color.tabbar,
