@@ -12,5 +12,24 @@ export const connect = async (self: RelayStore) => {
     preview: 'Connecting to Nostr relays...',
     value: { privateKey, publicKey },
   })
-  self.env.nostr.connect(publicKey, privateKey)
+  await self.env.nostr.connect(publicKey, privateKey)
+
+  // example callback function for a subscription
+  function onEvent(event: any, relay: string) {
+    try {
+      display({
+        name: 'relay.connect',
+        preview: `Received event from ${relay}`,
+        value: event,
+      })
+      const eventModel = self.rootStore.relay.events.get(event.id)
+      if (!eventModel) {
+        self.rootStore.relay.addEvent(event)
+      }
+    } catch (e) {
+      console.log('Error in onEvent')
+    }
+  }
+
+  self.env.nostr.pool.sub({ cb: onEvent, filter: { kinds: [40, 41, 42], limit: 5 } })
 }
