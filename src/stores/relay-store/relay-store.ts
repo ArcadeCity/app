@@ -1,3 +1,4 @@
+import { isArrayInArray } from 'lib/isArrayInArray'
 import { values } from 'mobx'
 import { applySnapshot, Instance, SnapshotOut, types } from 'mobx-state-tree'
 import { withEnvironment, withRootStore } from '../_extensions'
@@ -42,6 +43,25 @@ export const RelayStoreModel = types
             about,
           }
         })
+    },
+    /** Return messages for channel */
+    getMessagesForChannel(channelId: string) {
+      const events = values(self.events) as any
+      return (
+        events
+          .filter((event: Event) => event.kind === 42)
+          .filter((event: Event) => isArrayInArray(['#e', channelId], event.tags))
+          // .map((event: Event) => {
+          //   const messageInfo = JSON.parse(event.content)
+          //   const { message, sender } = messageInfo
+          //   return {
+          //     ...event,
+          //     message,
+          //     sender,
+          //   }
+          // })
+          .sort((a: Event, b: Event) => a.created_at - b.created_at)
+      )
     },
   }))
 

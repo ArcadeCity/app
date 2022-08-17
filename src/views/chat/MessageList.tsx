@@ -1,6 +1,8 @@
-// import { Message, useActiveChannelId, useChannelMessages } from '@arcadecity/use-arcade'
 import { FlatList, StyleSheet, View } from 'react-native'
+import { useStores } from 'stores/root-store'
 import { color, spacing } from 'views/theme'
+// import { Message, useActiveChannelId, useChannelMessages } from '@arcadecity/use-arcade'
+import { useRoute } from '@react-navigation/native'
 import { MessagePreview } from './message/message'
 
 interface Message {
@@ -9,10 +11,11 @@ interface Message {
 }
 
 export const MessageList = () => {
-  // const activeChannelId = useActiveChannelId()
-  // if (!activeChannelId) return <></>
-  // const messages: Message[] = useChannelMessages(activeChannelId)
-  const messages = []
+  const { relay } = useStores()
+  const route = useRoute<any>()
+  const channelId = route?.params?.channelId
+  const messages = relay.getMessagesForChannel(channelId)
+  console.log(`Channel ${channelId} has ${messages.length} messages`)
   return (
     <View style={styles.container}>
       <FlatList

@@ -24,7 +24,7 @@ export const ChannelPreview = ({ channel }: ChannelPreviewProps) => {
     <TouchableOpacity
       activeOpacity={0.8}
       key={channel?.id ?? 'asdf'}
-      onPress={() => navigation.navigate('channel')}
+      onPress={() => navigation.navigate('channel', { channelId: channel.id })}
       style={styles.container}>
       <Image
         source={{ uri: picture }}
