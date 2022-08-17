@@ -19,7 +19,7 @@ const BottomTab = createBottomTabNavigator<RootTabParamList>()
 export function BottomTabNavigator() {
   return (
     <BottomTab.Navigator
-      initialRouteName='FeedHome'
+      initialRouteName='ChatHome'
       screenOptions={{
         tabBarActiveTintColor: palette.moonRaker,
         tabBarInactiveTintColor: palette.blueBell,

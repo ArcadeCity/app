@@ -15,7 +15,7 @@ export const ChatHome = () => {
       data={channels}
       keyExtractor={keyExtractor}
       renderItem={renderItem}
-      style={[styles.flatList, { backgroundColor: '#120B29' }]}
+      style={[styles.flatList]}
     />
   )
 }
