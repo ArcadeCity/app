@@ -1,9 +1,9 @@
 import React from 'react'
 import { Pressable, View, ViewStyle } from 'react-native'
 import { AccountHome } from 'views/account/AccountHome'
-// import { FeedHome } from 'views/feed/FeedHome'
 // import { MapHome } from 'views/map/MapHome'
 import { Placeholder } from 'views/dev'
+import { FeedHome } from 'views/feed/FeedHome'
 import { color, palette, typography } from 'views/theme'
 import { FontAwesome, FontAwesome5 } from '@expo/vector-icons'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
@@ -52,7 +52,7 @@ export function BottomTabNavigator() {
       /> */}
       <BottomTab.Screen
         name='FeedHome'
-        component={Placeholder}
+        component={FeedHome}
         options={({ navigation }: RootTabScreenProps<'FeedHome'>) => ({
           title: 'Feed',
           tabBarIcon: ({ color, focused }) => (
