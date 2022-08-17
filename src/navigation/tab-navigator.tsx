@@ -1,9 +1,9 @@
 import React from 'react'
 import { Pressable, View, ViewStyle } from 'react-native'
 import { AccountHome } from 'views/account/AccountHome'
-// import { FeedHome } from 'views/feed/FeedHome'
 // import { MapHome } from 'views/map/MapHome'
 import { Placeholder } from 'views/dev'
+import { FeedHome } from 'views/feed/FeedHome'
 import { color, palette, typography } from 'views/theme'
 import { FontAwesome, FontAwesome5 } from '@expo/vector-icons'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
@@ -18,7 +18,7 @@ const BottomTab = createBottomTabNavigator<RootTabParamList>()
 export function BottomTabNavigator() {
   return (
     <BottomTab.Navigator
-      initialRouteName='MapHome'
+      initialRouteName='FeedHome'
       screenOptions={{
         tabBarActiveTintColor: palette.moonRaker,
         tabBarInactiveTintColor: palette.blueBell,
@@ -30,7 +30,7 @@ export function BottomTabNavigator() {
           paddingTop: 10,
         },
       }}>
-      <BottomTab.Screen
+      {/* <BottomTab.Screen
         name='MapHome'
         component={Placeholder}
         options={{
@@ -49,10 +49,10 @@ export function BottomTabNavigator() {
             fontFamily: typography.secondary,
           },
         }}
-      />
+      /> */}
       <BottomTab.Screen
         name='FeedHome'
-        component={Placeholder}
+        component={FeedHome}
         options={({ navigation }: RootTabScreenProps<'FeedHome'>) => ({
           title: 'Feed',
           tabBarIcon: ({ color, focused }) => (
@@ -83,7 +83,7 @@ export function BottomTabNavigator() {
           ),
         })}
       />
-      <BottomTab.Screen
+      {/* <BottomTab.Screen
         name='WalletHome'
         component={Placeholder}
         options={{
@@ -101,7 +101,7 @@ export function BottomTabNavigator() {
             fontFamily: typography.secondary,
           },
         }}
-      />
+      /> */}
       <BottomTab.Screen
         name='AccountHome'
         component={AccountHome}

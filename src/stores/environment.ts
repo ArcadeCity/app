@@ -1,5 +1,5 @@
 // import { Mapbox } from '../services/mapbox'
-// import { Nostr } from '../services/nostr'
+import { Nostr } from '../services/nostr'
 
 let ReactotronDev: any
 if (__DEV__) {
@@ -18,7 +18,7 @@ export class Environment {
       // dev-only services
       this.reactotron = new ReactotronDev()
     }
-    // this.nostr = new Nostr()
+    this.nostr = new Nostr()
   }
 
   async setup() {
@@ -37,7 +37,7 @@ export class Environment {
   /**
    * Our wrapper for Nostr
    */
-  // nostr: Nostr
+  nostr: Nostr
 
   /**
    * Reactotron is only available in dev.
