@@ -20,14 +20,24 @@ export class Nostr {
     // example callback function for a subscription
     function onEvent(event, relay) {
       try {
-        // console.log(event)
-        // console.log('hm')
-        console.log(`got an event from ${relay} which is already validated.`, event)
+        console.log(`Received from ${relay} event id ${event.id}`)
       } catch (e) {
         console.log('Error in onEvent')
       }
     }
 
-    this.pool.sub({ cb: onEvent, filter: { kinds: [40, 41, 42], limit: 5 } })
+    this.pool.sub({ cb: onEvent, filter: { kinds: [40, 41, 42], limit: 25 } })
+  }
+
+  async publish(eventObject: any) {
+    // publishing events(inside an async function):
+    const ev = await this.pool.publish(eventObject, (status, url) => {
+      if (status === 0) {
+        console.log(`publish request sent to ${url}`)
+      }
+      if (status === 1) {
+        console.log(`event published by ${url}`, ev)
+      }
+    })
   }
 }
