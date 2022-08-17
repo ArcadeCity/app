@@ -10,4 +10,5 @@ export const nostrConnect = async (self: UserStore) => {
       publicKey: self.publicKey,
     },
   })
+  self.env.nostr.connect()
 }
