@@ -1,5 +1,6 @@
 import React from 'react'
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { useNavigation } from '@react-navigation/native'
 import { color, palette, spacing } from '../theme'
 
 interface Channel {
@@ -11,10 +12,10 @@ interface Channel {
 
 interface ChannelPreviewProps {
   channel: Channel
-  onPress: () => void
 }
 
-export const ChannelPreview = ({ channel, onPress }: ChannelPreviewProps) => {
+export const ChannelPreview = ({ channel }: ChannelPreviewProps) => {
+  const navigation = useNavigation()
   const picture =
     channel?.picture && channel?.picture?.length > 4
       ? channel.picture
@@ -23,7 +24,7 @@ export const ChannelPreview = ({ channel, onPress }: ChannelPreviewProps) => {
     <TouchableOpacity
       activeOpacity={0.8}
       key={channel?.id ?? 'asdf'}
-      onPress={onPress}
+      onPress={() => navigation.navigate('channel')}
       style={styles.container}>
       <Image
         source={{ uri: picture }}

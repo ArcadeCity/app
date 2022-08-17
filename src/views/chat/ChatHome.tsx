@@ -25,9 +25,7 @@ export const ChatHome = () => {
 
 const keyExtractor = (item: Channel) => item.id
 
-const renderItem = ({ item }: { item: Channel }) => (
-  <ChannelPreview channel={item} onPress={() => console.log('yo')} />
-)
+const renderItem = ({ item }: { item: Channel }) => <ChannelPreview channel={item} />
 
 const styles = StyleSheet.create({
   flatList: { flex: 1 },

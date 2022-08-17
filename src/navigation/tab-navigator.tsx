@@ -8,6 +8,7 @@ import { FeedHome } from 'views/feed/FeedHome'
 import { color, palette, typography } from 'views/theme'
 import { FontAwesome, FontAwesome5 } from '@expo/vector-icons'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+import { ChatNavigator } from './chat-navigator'
 import { RootTabParamList, RootTabScreenProps } from './types'
 
 /**
@@ -33,10 +34,9 @@ export function BottomTabNavigator() {
       }}>
       <BottomTab.Screen
         name='ChatHome'
-        component={ChatHome}
+        component={ChatNavigator}
         options={{
-          title: 'Channels',
-          // headerShown: false,
+          headerShown: false,
           tabBarIcon: ({ color, focused }) => (
             <TabBarIcon name='stream' color={color} focused={focused} /> // list-ul
           ),
