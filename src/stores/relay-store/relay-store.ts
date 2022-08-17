@@ -31,7 +31,17 @@ export const RelayStoreModel = types
     /** Return channels as list of normalized events with kind 40 */
     get channels() {
       const events = values(self.events) as any
-      return events.filter((event: Event) => event.kind === 40)
+      return events
+        .filter((event: Event) => event.kind === 40)
+        .map((event: Event) => {
+          const channelInfo = JSON.parse(event.content)
+          const { name, about } = channelInfo
+          return {
+            ...event,
+            name,
+            about,
+          }
+        })
     },
   }))
 

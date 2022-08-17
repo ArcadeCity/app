@@ -35,7 +35,8 @@ export function BottomTabNavigator() {
         name='ChatHome'
         component={ChatHome}
         options={{
-          headerShown: false,
+          title: 'Channels',
+          // headerShown: false,
           tabBarIcon: ({ color, focused }) => (
             <TabBarIcon name='stream' color={color} focused={focused} /> // list-ul
           ),
