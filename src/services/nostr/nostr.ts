@@ -1,14 +1,18 @@
 import { display } from 'lib'
-import { relayPool } from 'lib/nostr'
+import { NostrEventToSerialize, NostrEventToSign, relayPool } from 'lib/nostr'
 
 export class Nostr {
   pool: any
+  publicKey: string | undefined
+  privateKey: string | undefined
 
   constructor() {
     this.pool = relayPool()
   }
 
-  async connect(privateKey: string) {
+  async connect(publicKey: string, privateKey: string) {
+    this.publicKey = publicKey
+    this.privateKey = privateKey
     display({
       name: 'Nostr',
       preview: 'Connecting...',
@@ -26,10 +30,11 @@ export class Nostr {
       }
     }
 
-    this.pool.sub({ cb: onEvent, filter: { kinds: [40, 41, 42], limit: 25 } })
+    this.pool.sub({ cb: onEvent, filter: { kinds: [40, 41, 42], limit: 5 } })
+    this.publishTestEvent()
   }
 
-  async publish(eventObject: any) {
+  async publish(eventObject: NostrEventToSerialize) {
     // publishing events(inside an async function):
     const ev = await this.pool.publish(eventObject, (status, url) => {
       if (status === 0) {
@@ -39,5 +44,17 @@ export class Nostr {
         console.log(`event published by ${url}`, ev)
       }
     })
+  }
+
+  async publishTestEvent() {
+    if (!this.publicKey) return
+    const event: NostrEventToSerialize = {
+      content: 'Hello!',
+      created_at: Date.now(),
+      kind: 42,
+      pubkey: this.publicKey,
+      tags: [],
+    }
+    this.publish(event)
   }
 }

@@ -13,5 +13,5 @@ export const nostrConnect = async (self: UserStore) => {
       publicKey: self.publicKey,
     },
   })
-  self.env.nostr.connect(self.privateKey)
+  self.env.nostr.connect(self.publicKey, self.privateKey)
 }
