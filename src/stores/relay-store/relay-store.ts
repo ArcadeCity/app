@@ -1,7 +1,7 @@
 import { applySnapshot, Instance, SnapshotOut, types } from 'mobx-state-tree'
 import { withEnvironment, withRootStore } from '../_extensions'
 import * as actions from './relay-actions'
-import { EventModel } from './relay-models'
+import { Event, EventModel } from './relay-models'
 
 export const RelayStoreModel = types
   .model('RelayStore')
@@ -11,7 +11,13 @@ export const RelayStoreModel = types
   .extend(withEnvironment)
   .extend(withRootStore)
   .actions((self) => ({
+    /** Connect to Nostr relays */
     connect: async (): Promise<void> => await actions.connect(self as RelayStore),
+    /** Save event to store */
+    addEvent: (event: Event) => {
+      self.events.set(event.id, event)
+    },
+    /** Reset this store to original state */
     reset() {
       applySnapshot(self, {})
     },
