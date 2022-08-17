@@ -14,7 +14,6 @@ export const UserStoreModel = types
   .actions((self) => ({
     login: async (text: string): Promise<boolean> => await actions.login(self as UserStore, text),
     logout: async (): Promise<void> => await actions.logout(self as UserStore),
-    nostrConnect: async (): Promise<void> => await actions.nostrConnect(self as UserStore),
     setMnemonic(mnemonic: string) {
       self.mnemonic = mnemonic
     },

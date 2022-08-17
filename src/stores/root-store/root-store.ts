@@ -1,7 +1,9 @@
 import { Instance, SnapshotOut, types } from 'mobx-state-tree'
-import { UserStoreModel } from '../user-store/user-store'
+import { RelayStoreModel } from 'stores/relay-store/relay-store'
+import { UserStoreModel } from 'stores/user-store/user-store'
 
 export const RootStoreModel = types.model('RootStore').props({
+  relay: types.optional(RelayStoreModel, {} as any),
   user: types.optional(UserStoreModel, {} as any),
 })
 
