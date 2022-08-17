@@ -54,7 +54,7 @@ export function relayConnect(url, onNotice = () => {}, onError = () => {}) {
     ws.onclose = () => {
       resetOpenState()
       attemptNumber++
-      nextAttemptSeconds += attemptNumber ** 3
+      nextAttemptSeconds += attemptNumber ** 2
       if (nextAttemptSeconds > 14400) {
         nextAttemptSeconds = 14400 // 4 hours
       }
