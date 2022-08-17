@@ -1,3 +1,4 @@
+import { useNostr } from 'lib/hooks'
 import React from 'react'
 // import NotFoundScreen from 'views/error/NotFoundScreen'
 // import ModalScreen from 'views/modal/ModalScreen'
@@ -15,6 +16,7 @@ import { RootStackParamList } from './types'
 const Stack = createNativeStackNavigator<RootStackParamList>()
 
 export function RootNavigator() {
+  useNostr()
   return (
     <Stack.Navigator>
       <Stack.Screen name='Root' component={BottomTabNavigator} options={{ headerShown: false }} />
