@@ -141,6 +141,7 @@ export function relayPool() {
             return
           } else {
             // check
+            console.log('attempting to verifysignature ok')
             if (!(await verifySignature(event)))
               throw new Error('signature provided by custom signing function is invalid.')
           }

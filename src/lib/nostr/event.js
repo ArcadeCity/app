@@ -1,5 +1,5 @@
 import { Buffer } from 'buffer'
-import createHash from 'create-hash'
+import createHash from 'create-hash/browser'
 import * as secp256k1 from '@alephium/noble-secp256k1'
 
 export function getBlankEvent() {
