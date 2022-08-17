@@ -31,7 +31,6 @@ export class Nostr {
     }
 
     this.pool.sub({ cb: onEvent, filter: { kinds: [40, 41, 42], limit: 5 } })
-    this.publishTestEvent()
   }
 
   async publish(eventObject: NostrEventToSerialize) {
@@ -41,7 +40,7 @@ export class Nostr {
         console.log(`publish request sent to ${url}`)
       }
       if (status === 1) {
-        console.log(`event published by ${url}`, ev)
+        console.log(`event published by ${url}`) // , ev
       }
     })
   }
