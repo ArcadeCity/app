@@ -2,6 +2,9 @@ import { display } from 'lib'
 import { UserStore } from '../user-store'
 
 export const nostrConnect = async (self: UserStore) => {
+  if (!self.privateKey) {
+    throw new Error('No private key')
+  }
   display({
     name: 'nostrConnect',
     preview: 'Connecting to Nostr relays...',
@@ -10,5 +13,5 @@ export const nostrConnect = async (self: UserStore) => {
       publicKey: self.publicKey,
     },
   })
-  self.env.nostr.connect()
+  self.env.nostr.connect(self.privateKey)
 }
