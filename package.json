@@ -15,6 +15,7 @@
     "test": "jest --watchAll",
     "build:ios": "eas build -p ios",
     "build:ios:local": "eas build --platform ios --local",
+    "submit:ios": "eas submit -p ios",
     "publish:ios": "eas update --branch production -p ios --message 'Update'"
   },
   "jest": {
