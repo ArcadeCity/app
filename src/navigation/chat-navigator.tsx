@@ -6,7 +6,7 @@ import { palette } from 'views/theme'
 import { FontAwesome } from '@expo/vector-icons'
 import { useNavigation } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
-// import { NavButton } from '../components/nav-button'
+import { NavButton } from './nav-button'
 import { stackOptions } from './stackOptions'
 
 const Stack = createNativeStackNavigator()
@@ -27,7 +27,7 @@ export const ChatNavigator = () => {
         options={{
           ...stackOptions,
           title: 'Channel',
-          // headerLeft: () => <NavButton onPress={navigation.goBack} />,
+          headerLeft: () => <NavButton onPress={navigation.goBack} />,
           headerRight: () => (
             <Pressable
               // onPress={demoUpdateMetadata}
