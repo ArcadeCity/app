@@ -1,3 +1,4 @@
+import { values } from 'mobx'
 import { applySnapshot, Instance, SnapshotOut, types } from 'mobx-state-tree'
 import { withEnvironment, withRootStore } from '../_extensions'
 import * as actions from './relay-actions'
@@ -20,6 +21,17 @@ export const RelayStoreModel = types
     /** Reset this store to original state */
     reset() {
       applySnapshot(self, {})
+    },
+  }))
+  .views((self) => ({
+    /** Get event by id */
+    getEventById(id: string) {
+      return self.events.get(id)
+    },
+    /** Return channels as list of normalized events with kind 40 */
+    get channels() {
+      const events = values(self.events) as any
+      return events.filter((event: Event) => event.kind === 40)
     },
   }))
 

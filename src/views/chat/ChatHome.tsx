@@ -1,4 +1,6 @@
+import { values } from 'mobx'
 import { FlatList, StyleSheet } from 'react-native'
+import { useStores } from 'stores/root-store'
 import { ChannelPreview } from './ChannelPreview'
 
 interface Channel {
@@ -9,7 +11,8 @@ interface Channel {
 }
 
 export const ChatHome = () => {
-  const channels: Channel[] = []
+  const { relay } = useStores()
+  const channels = relay.channels as Channel[]
   return (
     <FlatList
       data={channels}
