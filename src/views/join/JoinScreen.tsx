@@ -24,10 +24,7 @@ export const JoinScreen = observer(({ navigation }: any) => {
       Alert.alert('Invalid username', 'Please enter a username with only alphanumeric characters')
       return
     }
-    const signedUp = await user.signup({ username, displayName, about })
-    if (signedUp) {
-      navigation.goBack()
-    }
+    user.signup({ username, displayName, about })
   }
   return (
     <View style={styles.container}>
