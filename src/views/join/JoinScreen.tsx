@@ -1,11 +1,12 @@
 import { hexToNpub } from 'lib/nostr'
 import { observer } from 'mobx-react-lite'
 import { useState } from 'react'
-import { Alert, StyleSheet, Text as RNText, TextInput, View } from 'react-native'
+import { Alert, StyleSheet, Text as RNText, TextInput, TouchableOpacity, View } from 'react-native'
 import { useStores } from 'stores/root-store'
 import { Button } from 'views/entry/Button'
 import { Text } from 'views/shared'
-import { color, palette, spacing, typography } from 'views/theme'
+import { ACTIVE_OPACITY, color, palette, spacing, typography } from 'views/theme'
+import { FontAwesome } from '@expo/vector-icons'
 
 export const JoinScreen = observer(() => {
   const { user } = useStores()
@@ -54,7 +55,17 @@ export const JoinScreen = observer(() => {
         placeholderTextColor={palette.blueBell}
         style={styles.input}
       />
-      <Text text='Account ID' preset='header' />
+      <View style={{ flexDirection: 'row' }}>
+        <Text text='Account ID' preset='header' />
+        <TouchableOpacity activeOpacity={ACTIVE_OPACITY} onPress={user.createKeypair}>
+          <FontAwesome
+            name='refresh'
+            size={15}
+            color={palette.blueBell}
+            style={{ marginLeft: spacing[3] }}
+          />
+        </TouchableOpacity>
+      </View>
       <Text text={accountId} preset='descriptionSlim' style={{ marginTop: 10 }} />
       <Button width={300} height={70} onPress={pressCreate}>
         <RNText style={styles.textJoin}>CREATE ACCOUNT</RNText>
