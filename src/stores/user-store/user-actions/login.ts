@@ -1,6 +1,5 @@
 import * as SecureStore from 'expo-secure-store'
 import { display } from 'lib'
-import { isHex } from 'lib/isHex'
 import { getKeysForMnemonic, getKeysForNsec, hexToNsec } from 'lib/nostr'
 import { Alert } from 'react-native'
 import { UserStore } from '../user-store'
@@ -48,8 +47,10 @@ export const login = async (self: UserStore, text: string) => {
       loginWithMnemonic(text)
     } else if (text.startsWith('nsec')) {
       loginWithNsec(text)
-    } else if (text.length > 12 && isHex(text)) {
+    } else if (text.length > 12) {
       loginWithNsec(hexToNsec(text))
+    } else {
+      return
     }
 
     self.rootStore.relay.fetchUser(self.publicKey as string)
