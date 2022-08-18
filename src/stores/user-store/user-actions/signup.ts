@@ -16,7 +16,8 @@ export const signup = async (self: UserStore, { username, displayName, about }: 
   }
 
   await self.rootStore.relay.connect()
-  self.env.nostr.saveMetadata(metadata)
+  await self.env.nostr.saveMetadata(metadata)
+  self.setUsername(username)
 
   display({
     name: 'signup',
