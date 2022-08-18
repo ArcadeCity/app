@@ -1,4 +1,4 @@
-import { NostrEventToSerialize, relayPool } from 'lib/nostr'
+import { NostrEventToSerialize, NostrKind, relayPool } from 'lib/nostr'
 
 export class Nostr {
   pool: any
@@ -15,6 +15,20 @@ export class Nostr {
     this.pool.setPrivateKey(privateKey)
     this.pool.addRelay('wss://relay.damus.io', { read: true, write: true })
     // this.createDummyChannels()
+  }
+
+  async sendChannelMessage(channelId: string, text: string) {
+    if (!this.publicKey) return
+    const date = new Date()
+    const dateTimeInSeconds = Math.floor(date.getTime() / 1000)
+    const event: NostrEventToSerialize = {
+      content: text,
+      created_at: dateTimeInSeconds,
+      kind: NostrKind.channelmessage,
+      pubkey: this.publicKey,
+      tags: [['#e', channelId]],
+    }
+    this.publish(event)
   }
 
   async publish(eventObject: NostrEventToSerialize) {
@@ -39,7 +53,6 @@ export class Nostr {
       pubkey: this.publicKey,
       tags: [],
     }
-    console.log('publishing event', event)
     this.publish(event)
   }
 

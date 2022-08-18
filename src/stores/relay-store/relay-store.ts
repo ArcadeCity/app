@@ -15,6 +15,9 @@ export const RelayStoreModel = types
   .actions((self) => ({
     /** Connect to Nostr relays */
     connect: async (): Promise<void> => await actions.connect(self as RelayStore),
+    /** Send a message to channel */
+    sendChannelMessage: async (channelId: string, text: string): Promise<void> =>
+      await actions.sendChannelMessage(self as RelayStore, channelId, text),
     /** Save event to store */
     addEvent: (event: Event) => {
       self.events.set(event.id, event)

@@ -15,7 +15,7 @@ interface Props {
 }
 
 export const MessagePreview: React.FC<Props> = ({ message, preset }) => {
-  const text = message.text || JSON.parse(message.content).text
+  const text = message.content || JSON.parse(message.content).text
   const username = `Anon-${message.pubkey.slice(0, 5)}`
   const date = message.created_at * 1000
   const photo = `https://placekitten.com/200/201`

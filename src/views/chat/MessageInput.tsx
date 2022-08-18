@@ -1,29 +1,29 @@
 import { useContext, useRef, useState } from 'react'
 import { Alert, StyleSheet, TextInput, TouchableOpacity, View } from 'react-native'
+import { useStores } from 'stores/root-store'
 import { color, palette } from 'views/theme'
 import { FontAwesome } from '@expo/vector-icons'
 
-// import { ArcadeContext, useActiveChannelId, UseArcadeRelayActions } from '@arcadecity/use-arcade'
+interface MessageInputProps {
+  channelId: string
+}
 
-export const MessageInput = () => {
+export const MessageInput = ({ channelId }: MessageInputProps) => {
   const [text, setText] = useState('')
-  // const context = useContext(ArcadeContext)
-  // const activeChannelId = useActiveChannelId()
-  // const actions = context.actions as UseArcadeRelayActions
+  const { relay } = useStores()
   const inputBoxRef = useRef<TextInput | null>(null)
   const submitInput = () => {
     if (text.length < 1) {
       Alert.alert('Message too short', 'What is that, a message for ants?')
       return
     }
-    console.log('skipped')
-    // if (!activeChannelId) {
-    //   Alert.alert('Error getting channel ID')
-    //   return
-    // }
-    // inputBoxRef.current?.clear()
-    // setText('')
-    // actions.sendChannelMessage(activeChannelId, text)
+    if (!channelId) {
+      Alert.alert('Error getting channel ID')
+      return
+    }
+    inputBoxRef.current?.clear()
+    setText('')
+    relay.sendChannelMessage(channelId, text)
   }
   return (
     <View style={styles.container}>
