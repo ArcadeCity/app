@@ -27,6 +27,9 @@ export const UserStoreModel = types
     setPublicKey(publicKey: string) {
       self.publicKey = publicKey
     },
+    setUsername(username: string) {
+      self.username = username
+    },
     reset() {
       applySnapshot(self, {})
     },
