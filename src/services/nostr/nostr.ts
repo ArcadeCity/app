@@ -46,7 +46,7 @@ export class Nostr {
     this.publish(event)
   }
 
-  saveMetadata(metadata) {
+  async saveMetadata(metadata) {
     this.ensureKeys()
     const event: NostrEventToSerialize = {
       content: JSON.stringify(metadata),
@@ -55,7 +55,7 @@ export class Nostr {
       pubkey: this.publicKey as string,
       tags: [],
     }
-    this.publish(event)
+    await this.publish(event)
   }
 
   async publish(eventObject: NostrEventToSerialize) {
