@@ -8,10 +8,12 @@ export const UserStoreModel = types
     mnemonic: types.maybe(types.string),
     privateKey: types.maybe(types.string),
     publicKey: types.maybe(types.string),
+    username: types.maybe(types.string),
   })
   .extend(withEnvironment)
   .extend(withRootStore)
   .actions((self) => ({
+    createKeypair: async (): Promise<void> => await actions.createKeypair(self as UserStore),
     login: async (text: string): Promise<boolean> => await actions.login(self as UserStore, text),
     logout: async (): Promise<void> => await actions.logout(self as UserStore),
     setMnemonic(mnemonic: string) {
@@ -30,6 +32,9 @@ export const UserStoreModel = types
   .views((self) => ({
     get isAuthed(): boolean {
       return !!self.privateKey
+    },
+    get isOnboarded(): boolean {
+      return !!self.privateKey && !!self.username
     },
   }))
 

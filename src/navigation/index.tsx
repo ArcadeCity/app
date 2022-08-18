@@ -11,7 +11,7 @@ export const Navigation = observer(() => {
   const { user } = useStores()
   return (
     <NavigationContainer linking={LinkingConfiguration} theme={navTheme}>
-      {user.isAuthed ? <RootNavigator /> : <UnauthedNavigator />}
+      {user.isOnboarded ? <RootNavigator /> : <UnauthedNavigator />}
     </NavigationContainer>
   )
 })

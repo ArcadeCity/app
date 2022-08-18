@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useStores } from 'stores/root-store'
 import { HomeScreen } from 'views/entry/HomeScreen'
 import { JoinScreen } from 'views/join/JoinScreen'
 import { LoginScreen } from 'views/login/LoginScreen'
@@ -12,6 +13,12 @@ const Stack = createNativeStackNavigator<{
 }>()
 
 export function UnauthedNavigator() {
+  const { user } = useStores()
+  useEffect(() => {
+    if (!user.isAuthed) {
+      user.createKeypair()
+    }
+  }, [user.isAuthed])
   return (
     <Stack.Navigator>
       <Stack.Screen
