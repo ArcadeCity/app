@@ -13,6 +13,9 @@ export const RelayStoreModel = types
   .extend(withEnvironment)
   .extend(withRootStore)
   .actions((self) => ({
+    /** Check that we have metadata for all users we have events for  */
+    checkAllUserMetadata: async (): Promise<void> =>
+      await actions.checkAllUserMetadata(self as RelayStore),
     /** Connect to Nostr relays */
     connect: async (): Promise<void> => await actions.connect(self as RelayStore),
     /** Fetch user metadata for a given pubkey */
