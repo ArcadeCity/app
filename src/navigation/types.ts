@@ -4,9 +4,7 @@
  */
 
 import { BottomTabScreenProps } from '@react-navigation/bottom-tabs'
-import {
-  CompositeScreenProps, NavigatorScreenParams
-} from '@react-navigation/native'
+import { CompositeScreenProps, NavigatorScreenParams } from '@react-navigation/native'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
 
 declare global {
@@ -18,6 +16,7 @@ declare global {
 export type RootStackParamList = {
   Root: NavigatorScreenParams<RootTabParamList> | undefined
   NotFound: undefined
+  channel: { id: string; name: string }
   // Modals
   Modal: undefined
   NewRequest: undefined
@@ -31,6 +30,7 @@ export type RootStackScreenProps<Screen extends keyof RootStackParamList> = Nati
 >
 
 export type RootTabParamList = {
+  ChatHome: undefined
   AccountHome: undefined
   FeedHome: undefined
   MapHome: undefined

@@ -12,9 +12,11 @@ import { Post } from './Post'
 export const FeedHome = observer(({ navigation }: RootTabScreenProps<'FeedHome'>) => {
   const { relay } = useStores()
   const events: any = values(relay.events)
-  const sortedEvents = events.sort((a: Event, b: Event) => {
-    return b.created_at - a.created_at
-  })
+  const sortedEvents = events
+    .filter((event: Event) => event.kind === 1)
+    .sort((a: Event, b: Event) => {
+      return b.created_at - a.created_at
+    })
   console.log('events:', sortedEvents.length)
   // .slice(20)
   const key = 'id'
