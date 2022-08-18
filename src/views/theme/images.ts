@@ -3,6 +3,7 @@ export const images = {
   dollar: require('../../../assets/images/dollar.png'),
   guilds: require('../../../assets/images/guild.png'),
   guildsActive: require('../../../assets/images/guild-active.png'),
+  guildsBig: require('../../../assets/images/guilds-bigicon.png'),
   inbox: require('../../../assets/images/inbox.png'),
   inboxActive: require('../../../assets/images/inbox-active.png'),
   map: require('../../../assets/images/map.png'),

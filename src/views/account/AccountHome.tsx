@@ -3,7 +3,8 @@ import React from 'react'
 import { Button, StyleSheet, View } from 'react-native'
 import { useStores } from 'stores/root-store'
 import { Text } from 'views/shared'
-import { color } from 'views/theme'
+import { color, spacing } from 'views/theme'
+import { ProfileSummary } from './ProfileSummary'
 
 export const AccountHome = observer(() => {
   const { relay, user } = useStores()
@@ -11,9 +12,11 @@ export const AccountHome = observer(() => {
   const metadata = relay.getUserMetadata(user.publicKey)
   return (
     <View style={styles.container}>
-      <Text text={metadata?.username} preset='header' />
-      <Text text={metadata?.displayName} preset='header' />
-      <Text text={metadata?.about} preset='header' />
+      <ProfileSummary
+        about={metadata?.about}
+        displayName={metadata?.displayName}
+        username={metadata?.username}
+      />
       <Button title='Log out' onPress={() => user.logout()} />
     </View>
   )
@@ -22,8 +25,7 @@ export const AccountHome = observer(() => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
     backgroundColor: color.background,
-    justifyContent: 'center',
+    paddingHorizontal: spacing[3],
   },
 })
