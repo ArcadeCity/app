@@ -12,7 +12,7 @@ export const LoginScreen = observer(() => {
         autoCorrect={false}
         autoFocus={true}
         onChangeText={user.login}
-        placeholder='Enter seed phrase or private key'
+        placeholder='Enter Nostr seed phrase or private key'
         placeholderTextColor={palette.blueBell}
         style={styles.input}
       />
@@ -23,9 +23,9 @@ export const LoginScreen = observer(() => {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: color.background,
-    justifyContent: 'center',
     flex: 1,
     paddingHorizontal: spacing[6],
+    paddingTop: spacing[4],
   },
   input: {
     backgroundColor: color.field,
