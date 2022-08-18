@@ -9,6 +9,11 @@ export class Nostr {
     this.pool = relayPool()
   }
 
+  async unsubscribeAll() {
+    this.pool.removeRelay('wss://relay.damus.io')
+    console.log('Unsubscibed from all relays')
+  }
+
   async connect(publicKey: string, privateKey: string) {
     this.publicKey = publicKey
     this.privateKey = privateKey
