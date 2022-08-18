@@ -1,30 +1,52 @@
 import { observer } from 'mobx-react-lite'
 import { useState } from 'react'
-import { StyleSheet, Text, TextInput, View } from 'react-native'
+import { StyleSheet, Text as RNText, TextInput, View } from 'react-native'
 import { useStores } from 'stores/root-store'
 import { Button } from 'views/entry/Button'
-import { color, palette, spacing } from 'views/theme'
+import { Text } from 'views/shared'
+import { color, palette, spacing, typography } from 'views/theme'
 
 export const JoinScreen = observer(() => {
   const { user } = useStores()
   const [username, setUsername] = useState('')
+  const [displayName, setDisplayName] = useState('')
+  const [about, setAbout] = useState('')
   const pressCreate = () => {
-    console.log(username)
+    console.log(username, displayName, about)
   }
   return (
     <View style={styles.container}>
-      <Text>Username</Text>
+      <Text text='Username' preset='header' />
       <TextInput
         autoCapitalize='none'
         autoCorrect={false}
-        autoFocus={true}
         onChangeText={(text) => setUsername(text)}
-        placeholder='Enter username'
+        placeholder='satoshi'
         placeholderTextColor={palette.blueBell}
         style={styles.input}
       />
+      <Text text='Display name (optional)' preset='header' />
+      <TextInput
+        autoCapitalize='none'
+        autoCorrect={false}
+        onChangeText={(text) => setDisplayName(text)}
+        placeholder='Satoshi Nakamoto'
+        placeholderTextColor={palette.blueBell}
+        style={styles.input}
+      />
+      <Text text='About (optional)' preset='header' />
+      <TextInput
+        autoCapitalize='none'
+        autoCorrect={false}
+        onChangeText={(text) => setAbout(text)}
+        placeholder='Chancellor on brink of second bailout for banks'
+        placeholderTextColor={palette.blueBell}
+        style={styles.input}
+      />
+      <Text text='Account ID' preset='header' />
+      <Text text={user.publicKey} preset='title3' />
       <Button width={300} height={70} onPress={pressCreate}>
-        <Text style={styles.textJoin}>CREATE ACCOUNT</Text>
+        <RNText style={styles.textJoin}>CREATE ACCOUNT</RNText>
       </Button>
     </View>
   )
@@ -33,23 +55,23 @@ export const JoinScreen = observer(() => {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: color.background,
-    // justifyContent: 'center',
     flex: 1,
-    paddingHorizontal: spacing[7],
+    padding: spacing[6],
   },
   input: {
     backgroundColor: color.field,
     borderRadius: 15,
     color: color.text,
+    marginBottom: 40,
+    marginTop: 10,
     padding: 16,
-    marginVertical: 30,
   },
   textJoin: {
     color: palette.moonRaker,
-    fontFamily: 'Courier New',
+    fontFamily: typography.bold,
     fontSize: 20,
+    fontWeight: '700',
     letterSpacing: 2,
     textAlign: 'center',
-    fontWeight: '700',
   },
 })

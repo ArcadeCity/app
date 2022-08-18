@@ -23,7 +23,11 @@ export const typography = {
     web: 'Inter',
   }),
 
-  bold: Platform.select({ ios: 'Inter_700Bold', android: 'Inter_700Bold', web: 'Inter_700Bold' }),
+  bold: Platform.select({
+    ios: 'Lexend_700Bold',
+    android: 'Lexend_700Bold',
+    web: 'Lexend_700Bold',
+  }),
 
   /**
    * An alternate font used for perhaps titles and stuff.

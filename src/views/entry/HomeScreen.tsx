@@ -2,7 +2,7 @@ import { MotiView } from 'moti'
 import { useEffect, useState } from 'react'
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { FadeInMap } from 'views/map'
-import { palette, spacing } from 'views/theme'
+import { palette, spacing, typography } from 'views/theme'
 import { Button } from './Button'
 import { Filter } from './Filter'
 import { Logo } from './Logo'
@@ -80,7 +80,7 @@ const styles = StyleSheet.create({
   },
   textJoin: {
     color: palette.moonRaker,
-    fontFamily: 'Courier New',
+    fontFamily: typography.bold,
     fontSize: 20,
     letterSpacing: 2,
     textAlign: 'center',
@@ -88,9 +88,9 @@ const styles = StyleSheet.create({
   },
   textLogin: {
     color: palette.blueBell,
-    fontFamily: 'Courier New',
+    fontFamily: typography.bold,
     fontSize: 16,
-    letterSpacing: 0.5,
+    letterSpacing: 1.5,
     padding: spacing[4],
     textAlign: 'center',
     fontWeight: '500',
