@@ -28,21 +28,21 @@ export const ChatNavigator = () => {
           ...stackOptions,
           title: 'Channel',
           headerLeft: () => <NavButton onPress={navigation.goBack} />,
-          headerRight: () => (
-            <Pressable
-              // onPress={demoUpdateMetadata}
-              onPress={() => navigation.navigate('Modal')}
-              style={({ pressed }) => ({
-                opacity: pressed ? 0.5 : 1,
-              })}>
-              <FontAwesome
-                name='info-circle'
-                size={25}
-                color={palette.moonRaker}
-                style={{ marginRight: 15 }}
-              />
-            </Pressable>
-          ),
+          // headerRight: () => (
+          //   <Pressable
+          //     // onPress={demoUpdateMetadata}
+          //     onPress={() => navigation.navigate('Modal')}
+          //     style={({ pressed }) => ({
+          //       opacity: pressed ? 0.5 : 1,
+          //     })}>
+          //     <FontAwesome
+          //       name='info-circle'
+          //       size={25}
+          //       color={palette.moonRaker}
+          //       style={{ marginRight: 15 }}
+          //     />
+          //   </Pressable>
+          // ),
         }}
       />
       {/* <Stack.Screen name='profile' component={Profile} options={stackOptions} /> */}
