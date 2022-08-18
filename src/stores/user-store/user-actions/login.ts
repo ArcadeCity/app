@@ -5,6 +5,7 @@ import { Alert } from 'react-native'
 import { UserStore } from '../user-store'
 
 export const login = async (self: UserStore, text: string) => {
+  self.reset()
   const loginWithMnemonic = async (mnemonic: string) => {
     const { privateKey, publicKey } = getKeysForMnemonic(mnemonic)
     const newAccountKeys: AccountKeys = { mnemonic, privateKey, publicKey }
