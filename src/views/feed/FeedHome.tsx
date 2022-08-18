@@ -17,8 +17,6 @@ export const FeedHome = observer(({ navigation }: RootTabScreenProps<'FeedHome'>
     .sort((a: Event, b: Event) => {
       return b.created_at - a.created_at
     })
-  console.log('events:', sortedEvents.length)
-  // .slice(20)
   const key = 'id'
   const arrayUniqueByKey: any[] = [
     ...new Map(sortedEvents.map((item: any) => [item[key], item])).values(),
