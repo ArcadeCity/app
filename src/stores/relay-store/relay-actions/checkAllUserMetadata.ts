@@ -11,11 +11,16 @@ export const checkAllUserMetadata = async (self: RelayStore) => {
   // First build an array of unique pubkeys from the kinds we care about - for now just channelmessage
   const filteredEvents = events.filter((event: Event) => event.kind === NostrKind.channelmessage)
   const pubkeys = filteredEvents.map((event: Event) => event.pubkey)
-  const uniquePubkeys = Array.from(new Set(pubkeys))
+  const uniquePubkeys: string[] = Array.from(new Set(pubkeys))
 
   display({
     name: 'checkAllUserMetadata',
     preview: `Checking ${events.length} events (${filteredEvents.length} filtered) for user metadata`,
     value: { pubkeys, uniquePubkeys },
   })
+
+  // Now fetch metadata for each pubkey
+  for (const pubkey of uniquePubkeys) {
+    await self.fetchUser(pubkey)
+  }
 }

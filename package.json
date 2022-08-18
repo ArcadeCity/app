@@ -16,6 +16,7 @@
     "build:android": "eas build -p android",
     "build:ios": "eas build -p ios",
     "build:ios:local": "eas build --platform ios --local",
+    "submit:android": "eas submit -p android",
     "submit:ios": "eas submit -p ios",
     "publish:ios": "eas update --branch production -p ios --message 'Update'"
   },

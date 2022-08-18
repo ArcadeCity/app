@@ -1,4 +1,5 @@
 import { display } from 'lib'
+import { delay } from 'lib/delay'
 import { RelayStore } from '../relay-store'
 
 export const fetchUser = async (self: RelayStore, pubkey: string) => {
@@ -24,5 +25,8 @@ export const fetchUser = async (self: RelayStore, pubkey: string) => {
     }
   }
 
-  self.env.nostr.pool.sub({ cb: onEvent, filter: { kinds: [0], authors: [pubkey] } })
+  const sub = self.env.nostr.pool.sub({ cb: onEvent, filter: { kinds: [0], authors: [pubkey] } })
+  await delay(1000)
+  sub.unsub()
+  console.log('unsubbed?')
 }
