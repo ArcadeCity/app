@@ -36,7 +36,7 @@ export const HomeScreen = ({ navigation }) => {
       </MotiView>
       <FadeInMap />
       <View style={styles.containerButton}>
-        <Button width={300} height={70} onPress={() => console.log('Join')}>
+        <Button width={300} height={70} onPress={() => navigation.navigate('join')}>
           <Text style={styles.textJoin}>JOIN ARCADE CITY</Text>
         </Button>
         <TouchableOpacity activeOpacity={0.8} onPress={() => navigation.navigate('login')}>
