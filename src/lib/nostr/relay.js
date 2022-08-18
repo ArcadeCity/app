@@ -180,6 +180,9 @@ export function relayConnect(url, onNotice = () => {}, onError = () => {}) {
       }
     },
     close() {
+      ws.onclose = () => {
+        console.log('Closed and not reconnecting')
+      }
       ws.close()
     },
     get status() {
