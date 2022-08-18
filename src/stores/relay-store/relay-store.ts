@@ -15,6 +15,9 @@ export const RelayStoreModel = types
   .actions((self) => ({
     /** Connect to Nostr relays */
     connect: async (): Promise<void> => await actions.connect(self as RelayStore),
+    /** Fetch user metadata for a given pubkey */
+    fetchUser: async (pubkey: string): Promise<void> =>
+      await actions.fetchUser(self as RelayStore, pubkey),
     /** Send a message to channel */
     sendChannelMessage: async (channelId: string, text: string): Promise<void> =>
       await actions.sendChannelMessage(self as RelayStore, channelId, text),
@@ -31,6 +34,27 @@ export const RelayStoreModel = types
     /** Get event by id */
     getEventById(id: string) {
       return self.events.get(id)
+    },
+    /** Get metadata for user */
+    getUserMetadata(pubkey: string) {
+      const events = values(self.events) as any
+      const metadataEvents = events
+        .filter((event: Event) => event.kind === 0)
+        .filter((event: Event) => event.pubkey === pubkey)
+        .sort((a: Event, b: Event) => b.created_at - a.created_at)
+
+      if (metadataEvents.length === 0) {
+        self.fetchUser(pubkey)
+        return null
+      }
+      const latest = metadataEvents[0]
+      const content = JSON.parse(latest.content) as any
+      console.log(content)
+      return {
+        about: content.about ?? '',
+        displayName: content.displayName ?? '',
+        username: content.name,
+      }
     },
     /** Return channels as list of normalized events with kind 40 */
     get channels() {
