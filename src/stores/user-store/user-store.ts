@@ -5,7 +5,9 @@ import * as actions from './user-actions'
 export const UserStoreModel = types
   .model('UserStore')
   .props({
+    about: types.maybe(types.string),
     authed: types.optional(types.boolean, false),
+    displayName: types.maybe(types.string),
     mnemonic: types.maybe(types.string),
     privateKey: types.maybe(types.string),
     publicKey: types.maybe(types.string),
@@ -19,8 +21,14 @@ export const UserStoreModel = types
     logout: async (): Promise<void> => await actions.logout(self as UserStore),
     signup: async (props: actions.SignupProps): Promise<boolean> =>
       await actions.signup(self as UserStore, props),
+    setAbout(about: string) {
+      self.about = about
+    },
     setAuthed(authed: boolean) {
       self.authed = authed
+    },
+    setDisplayName(displayName: string) {
+      self.displayName = displayName
     },
     setMnemonic(mnemonic: string) {
       self.mnemonic = mnemonic
