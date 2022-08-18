@@ -52,6 +52,7 @@ export const RelayStoreModel = types
       return {
         about: content.about ?? '',
         displayName: content.displayName ?? '',
+        picture: content.picture ?? '',
         username: content.name,
       }
     },

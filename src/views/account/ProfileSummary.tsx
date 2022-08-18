@@ -11,7 +11,7 @@ interface ProfileSummaryProps {
 
 export const ProfileSummary = ({ about, displayName, picture, username }: ProfileSummaryProps) => {
   const levelAndClass = 'Level 0 Noob'
-  const name = displayName.length > 0 ? displayName : username
+  const name = displayName && displayName.length > 0 ? displayName : username
   const secondName = displayName ? username : undefined
   return (
     <View style={ROOT}>
