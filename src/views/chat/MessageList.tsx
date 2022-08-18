@@ -1,7 +1,7 @@
+import { observer } from 'mobx-react-lite'
 import { FlatList, StyleSheet, View } from 'react-native'
 import { useStores } from 'stores/root-store'
 import { color, spacing } from 'views/theme'
-// import { Message, useActiveChannelId, useChannelMessages } from '@arcadecity/use-arcade'
 import { useRoute } from '@react-navigation/native'
 import { MessagePreview } from './message/message'
 
@@ -10,12 +10,16 @@ interface Message {
   pubkey: string
 }
 
-export const MessageList = () => {
-  const { relay } = useStores()
+export const MessageList = observer(() => {
+  const { relay, user } = useStores()
   const route = useRoute<any>()
   const channelId = route?.params?.id
   const messages = relay.getMessagesForChannel(channelId)
-  console.log(`Channel ${channelId} has ${messages.length} messages`)
+
+  const renderItem = ({ item }: { item: Message }) => (
+    <MessagePreview message={item} preset={user.publicKey === item.pubkey ? 'sent' : 'received'} />
+  )
+
   return (
     <View style={styles.container}>
       <FlatList
@@ -26,14 +30,9 @@ export const MessageList = () => {
       />
     </View>
   )
-}
+})
 
 const keyExtractor = (item: Message) => item.id
-
-const pubkey = 'd67fe59472f658c1b2dec9ffd60b86af260a2f8460b441f9a891761f87b67a5d'
-const renderItem = ({ item }: { item: Message }) => (
-  <MessagePreview message={item} preset={pubkey === item.pubkey ? 'sent' : 'received'} />
-)
 
 const styles = StyleSheet.create({
   container: {
