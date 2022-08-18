@@ -24,8 +24,6 @@ export const MessagePreview: React.FC<Props> = ({ message, preset }) => {
   const messagePreset: any = messagePresets[preset]
   const deliveryTime = moment(date).fromNow()
 
-  console.log(message)
-
   return (
     <View key={`${deliveryTime}`}>
       <View style={messagePreset.container}>
