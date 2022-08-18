@@ -1,11 +1,6 @@
-import React, { useContext } from 'react'
-import { Pressable } from 'react-native'
+import React from 'react'
 import { AccountHome } from 'views/account/AccountHome'
-import { ChannelScreen } from 'views/chat/ChannelScreen'
-import { ChatHome } from 'views/chat/ChatHome'
-import { Placeholder } from 'views/dev'
-import { palette } from 'views/theme'
-import { FontAwesome } from '@expo/vector-icons'
+import { Keys } from 'views/account/Keys'
 import { useNavigation } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { NavButton } from './nav-button'
@@ -25,7 +20,7 @@ export const AccountNavigator = () => {
       />
       <Stack.Screen
         name='keys'
-        component={Placeholder}
+        component={Keys}
         options={{
           ...stackOptions,
           title: 'Keys',
