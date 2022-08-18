@@ -47,6 +47,7 @@ export const Keys = observer(() => {
           text='You can log in with either your private key or your seed phrase. DO NOT share your private key or seed phrase with anyone or they will be able to log in to your account.'
           preset='description'
         />
+
         <Text
           text='Your public key identifies you on the Nostr network. You can share it with anyone you want.'
           preset='description'
@@ -61,11 +62,16 @@ export const Keys = observer(() => {
           <Text text='Private key' preset='header' />
           <Text text={nseckey} preset='description' />
         </TouchableOpacity>
-        {mnemonic && (
+        {mnemonic ? (
           <TouchableOpacity activeOpacity={0.8} onPress={copyMnemonic}>
             <Text text='Seed phrase' preset='header' />
             <Text text={mnemonic} preset='description' />
           </TouchableOpacity>
+        ) : (
+          <Text
+            text='You logged in with your private key, so your mnemonic will not show here.'
+            preset='description'
+          />
         )}
       </View>
     </Screen>

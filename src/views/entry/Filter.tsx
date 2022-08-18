@@ -27,7 +27,7 @@ export const Filter = () => {
   }
   return (
     <MotiView
-      delay={750}
+      // delay={0}
       transition={{
         type: 'timing',
         duration: 2000,
