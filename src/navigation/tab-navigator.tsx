@@ -8,6 +8,7 @@ import { FeedHome } from 'views/feed/FeedHome'
 import { color, palette, typography } from 'views/theme'
 import { FontAwesome, FontAwesome5 } from '@expo/vector-icons'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+import { AccountNavigator } from './account-navigator'
 import { ChatNavigator } from './chat-navigator'
 import { RootTabParamList, RootTabScreenProps } from './types'
 
@@ -105,9 +106,10 @@ export function BottomTabNavigator() {
       /> */}
       <BottomTab.Screen
         name='AccountHome'
-        component={AccountHome}
+        component={AccountNavigator}
         options={{
-          title: 'Account',
+          headerShown: false,
+          // title: 'Account',
           tabBarIcon: ({ color, focused }) => (
             <TabBarIcon name='user-alt' color={color} focused={focused} />
           ),
