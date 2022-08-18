@@ -13,7 +13,7 @@ interface Message {
 export const MessageList = () => {
   const { relay } = useStores()
   const route = useRoute<any>()
-  const channelId = route?.params?.channelId
+  const channelId = route?.params?.id
   const messages = relay.getMessagesForChannel(channelId)
   console.log(`Channel ${channelId} has ${messages.length} messages`)
   return (

@@ -15,9 +15,7 @@ interface ChannelPreviewProps {
 }
 
 export const ChannelPreview = ({ channel }: ChannelPreviewProps) => {
-  console.log(channel)
   const navigation = useNavigation()
-  // const content = JSON.parse(channel.)
   const picture =
     channel?.picture && channel?.picture?.length > 4
       ? channel.picture
@@ -26,7 +24,7 @@ export const ChannelPreview = ({ channel }: ChannelPreviewProps) => {
     <TouchableOpacity
       activeOpacity={0.8}
       key={channel?.id ?? 'asdf'}
-      onPress={() => navigation.navigate('channel', { channelId: channel.id })}
+      onPress={() => navigation.navigate('channel', { id: channel.id, name: channel.name })}
       style={styles.container}>
       <Image
         source={{ uri: picture }}
