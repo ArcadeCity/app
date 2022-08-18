@@ -1,6 +1,6 @@
 import { observer } from 'mobx-react-lite'
 import { useState } from 'react'
-import { StyleSheet, Text as RNText, TextInput, View } from 'react-native'
+import { Alert, StyleSheet, Text as RNText, TextInput, View } from 'react-native'
 import { useStores } from 'stores/root-store'
 import { Button } from 'views/entry/Button'
 import { Text } from 'views/shared'
@@ -11,7 +11,16 @@ export const JoinScreen = observer(() => {
   const [username, setUsername] = useState('')
   const [displayName, setDisplayName] = useState('')
   const [about, setAbout] = useState('')
+  const regex = /^[a-zA-Z_\-0-9]+$/
   const pressCreate = () => {
+    if (username.length < 3) {
+      Alert.alert('Username too short', 'Please enter a username with at least 3 characters')
+      return
+    }
+    if (!regex.test(username)) {
+      Alert.alert('Invalid username', 'Please enter a username with only alphanumeric characters')
+      return
+    }
     console.log(username, displayName, about)
   }
   return (
