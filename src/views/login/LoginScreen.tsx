@@ -12,7 +12,7 @@ export const LoginScreen = observer(() => {
         autoCorrect={false}
         autoFocus={true}
         onChangeText={user.login}
-        placeholder='Enter access code'
+        placeholder='Enter seed phrase or private key'
         placeholderTextColor={palette.blueBell}
         style={styles.input}
       />
@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
     backgroundColor: color.background,
     justifyContent: 'center',
     flex: 1,
-    paddingHorizontal: spacing[7],
+    paddingHorizontal: spacing[6],
   },
   input: {
     backgroundColor: color.field,
