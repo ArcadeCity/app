@@ -67,9 +67,11 @@ export const JoinScreen = observer(() => {
         </TouchableOpacity>
       </View>
       <Text text={accountId} preset='descriptionSlim' style={{ marginTop: 10 }} />
-      <Button width={300} height={70} onPress={pressCreate}>
-        <RNText style={styles.textJoin}>CREATE ACCOUNT</RNText>
-      </Button>
+      <View style={{ height: 100, marginTop: 30 }}>
+        <Button width={300} height={70} onPress={pressCreate}>
+          <RNText style={styles.textJoin}>CREATE ACCOUNT</RNText>
+        </Button>
+      </View>
     </View>
   )
 })
