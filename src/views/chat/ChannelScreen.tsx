@@ -1,6 +1,7 @@
 import { RootStackScreenProps } from 'navigation/types'
 import { useEffect } from 'react'
 import { View } from 'react-native'
+import { Screen } from 'views/shared'
 import { MessageInput } from './MessageInput'
 import { MessageList } from './MessageList'
 
@@ -10,9 +11,9 @@ export const ChannelScreen = ({ navigation, route }: RootStackScreenProps<'chann
     navigation.setOptions({ title })
   }, [title])
   return (
-    <View style={{ flex: 1, width: '100%' }}>
+    <Screen preset='fixed' unsafe>
       <MessageList />
       <MessageInput channelId={route.params.id} />
-    </View>
+    </Screen>
   )
 }
