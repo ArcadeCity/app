@@ -8,14 +8,14 @@ import { Text } from 'views/shared'
 import { ACTIVE_OPACITY, color, palette, spacing, typography } from 'views/theme'
 import { FontAwesome } from '@expo/vector-icons'
 
-export const JoinScreen = observer(() => {
+export const JoinScreen = observer(({ navigation }: any) => {
   const { user } = useStores()
   const [username, setUsername] = useState('')
   const [displayName, setDisplayName] = useState('')
   const [about, setAbout] = useState('')
   const regex = /^[a-zA-Z_\-0-9]+$/
   const accountId = user.publicKey ? hexToNpub(user.publicKey) : '-'
-  const pressCreate = () => {
+  const pressCreate = async () => {
     if (username.length < 3) {
       Alert.alert('Username too short', 'Please enter a username with at least 3 characters')
       return
@@ -24,7 +24,10 @@ export const JoinScreen = observer(() => {
       Alert.alert('Invalid username', 'Please enter a username with only alphanumeric characters')
       return
     }
-    user.signup({ username, displayName, about })
+    const signedUp = await user.signup({ username, displayName, about })
+    if (signedUp) {
+      navigation.goBack()
+    }
   }
   return (
     <View style={styles.container}>

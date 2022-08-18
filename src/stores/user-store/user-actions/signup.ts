@@ -8,9 +8,24 @@ export interface SignupProps {
 }
 
 export const signup = async (self: UserStore, { username, displayName, about }: SignupProps) => {
+  const metadata = {
+    name: username,
+    displayName,
+    about,
+    website: null,
+  }
+
+  self.env.nostr.saveMetadata(metadata)
+
   display({
     name: 'signup',
     preview: `Signing up ${username}...`,
-    value: { username, displayName, about },
+    value: {
+      about,
+      displayName,
+      metadata,
+      username,
+    },
   })
+  return true
 }

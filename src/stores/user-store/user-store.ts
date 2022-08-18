@@ -16,7 +16,7 @@ export const UserStoreModel = types
     createKeypair: async (): Promise<void> => await actions.createKeypair(self as UserStore),
     login: async (text: string): Promise<boolean> => await actions.login(self as UserStore, text),
     logout: async (): Promise<void> => await actions.logout(self as UserStore),
-    signup: async (props: actions.SignupProps): Promise<void> =>
+    signup: async (props: actions.SignupProps): Promise<boolean> =>
       await actions.signup(self as UserStore, props),
     setMnemonic(mnemonic: string) {
       self.mnemonic = mnemonic
