@@ -49,7 +49,6 @@ export const RelayStoreModel = types
       }
       const latest = metadataEvents[0]
       const content = JSON.parse(latest.content) as any
-      console.log(content)
       return {
         about: content.about ?? '',
         displayName: content.displayName ?? '',
