@@ -1,3 +1,4 @@
+import { hexToNpub } from 'lib/nostr'
 import { observer } from 'mobx-react-lite'
 import { useState } from 'react'
 import { Alert, StyleSheet, Text as RNText, TextInput, View } from 'react-native'
@@ -53,7 +54,7 @@ export const JoinScreen = observer(() => {
         style={styles.input}
       />
       <Text text='Account ID' preset='header' />
-      <Text text={user.publicKey} preset='title3' />
+      <Text text={hexToNpub(user.publicKey)} preset='descriptionSlim' style={{ marginTop: 10 }} />
       <Button width={300} height={70} onPress={pressCreate}>
         <RNText style={styles.textJoin}>CREATE ACCOUNT</RNText>
       </Button>

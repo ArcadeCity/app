@@ -1,4 +1,5 @@
 import { bech32 } from 'bech32'
+import { Buffer } from 'buffer'
 
 export const hexToNpub = (hex: string) => {
   return bech32.encode('npub', bech32.toWords(Buffer.from(hex, 'hex')))
