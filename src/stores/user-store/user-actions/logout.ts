@@ -2,6 +2,7 @@ import * as SecureStore from 'expo-secure-store'
 import { UserStore } from '../user-store'
 
 export const logout = async (self: UserStore) => {
+  self.rootStore.relay.reset()
   self.reset()
   const storeAvailable = await SecureStore.isAvailableAsync()
   if (storeAvailable) {
