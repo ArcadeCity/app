@@ -5,6 +5,7 @@ import * as actions from './user-actions'
 export const UserStoreModel = types
   .model('UserStore')
   .props({
+    authed: types.optional(types.boolean, false),
     mnemonic: types.maybe(types.string),
     privateKey: types.maybe(types.string),
     publicKey: types.maybe(types.string),
@@ -18,6 +19,9 @@ export const UserStoreModel = types
     logout: async (): Promise<void> => await actions.logout(self as UserStore),
     signup: async (props: actions.SignupProps): Promise<boolean> =>
       await actions.signup(self as UserStore, props),
+    setAuthed(authed: boolean) {
+      self.authed = authed
+    },
     setMnemonic(mnemonic: string) {
       self.mnemonic = mnemonic
     },
@@ -36,7 +40,7 @@ export const UserStoreModel = types
   }))
   .views((self) => ({
     get isAuthed(): boolean {
-      return !!self.privateKey
+      return !!self.authed
     },
     get isOnboarded(): boolean {
       return !!self.privateKey && !!self.username

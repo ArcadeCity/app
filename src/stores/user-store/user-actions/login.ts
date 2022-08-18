@@ -51,6 +51,7 @@ export const login = async (self: UserStore, text: string) => {
     } else if (text.length > 12 && isHex(text)) {
       loginWithNsec(hexToNsec(text))
     }
+    self.setAuthed(true)
     return true
   } catch (e) {
     // self.setLoggingIn(false)
