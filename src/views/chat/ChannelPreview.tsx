@@ -1,3 +1,4 @@
+import { generateRandomPlacekitten } from 'lib/placekitten'
 import React from 'react'
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
@@ -17,9 +18,7 @@ interface ChannelPreviewProps {
 export const ChannelPreview = ({ channel }: ChannelPreviewProps) => {
   const navigation = useNavigation()
   const picture =
-    channel?.picture && channel?.picture?.length > 4
-      ? channel.picture
-      : 'http://placekitten.com/200/200'
+    channel?.picture && channel?.picture?.length > 4 ? channel.picture : generateRandomPlacekitten()
   return (
     <TouchableOpacity
       activeOpacity={0.8}

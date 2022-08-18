@@ -1,4 +1,5 @@
 import { display } from 'lib'
+import { delay } from 'lib/delay'
 import { NostrKind } from 'lib/nostr'
 import { values } from 'mobx'
 import { Event } from '../relay-models'
@@ -21,6 +22,13 @@ export const checkAllUserMetadata = async (self: RelayStore) => {
 
   // Now fetch metadata for each pubkey
   for (const pubkey of uniquePubkeys) {
-    await self.fetchUser(pubkey)
+    if (self.userMetadata.has(pubkey)) {
+      console.log(`Already have metadata for ${pubkey}`)
+      continue
+    } else {
+      console.log(`Fetching metadata for ${pubkey}`)
+      await delay(250)
+      self.fetchUser(pubkey)
+    }
   }
 }

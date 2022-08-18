@@ -3,12 +3,13 @@ import { values } from 'mobx'
 import { applySnapshot, Instance, SnapshotOut, types } from 'mobx-state-tree'
 import { withEnvironment, withRootStore } from '../_extensions'
 import * as actions from './relay-actions'
-import { Event, EventModel } from './relay-models'
+import { Event, EventModel, UserMetadata, UserMetadataModel } from './relay-models'
 
 export const RelayStoreModel = types
   .model('RelayStore')
   .props({
     events: types.optional(types.map(EventModel), {}),
+    userMetadata: types.optional(types.map(UserMetadataModel), {}),
   })
   .extend(withEnvironment)
   .extend(withRootStore)
@@ -27,6 +28,11 @@ export const RelayStoreModel = types
     /** Save event to store */
     addEvent: (event: Event) => {
       self.events.set(event.id, event)
+    },
+    /** Save user metadata to store */
+    addUserMetadata: (metadata: UserMetadata) => {
+      console.log('attempting to save:', metadata)
+      self.userMetadata.set(metadata.pubkey, metadata)
     },
     /** Reset this store to original state */
     reset() {

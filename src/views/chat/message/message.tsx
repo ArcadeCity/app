@@ -1,4 +1,5 @@
 // import { useNavigation } from '@react-navigation/native'
+import { generateRandomPlacekitten } from 'lib/placekitten'
 import moment from 'moment'
 import React from 'react'
 import { Image, Text, View } from 'react-native'
@@ -18,7 +19,7 @@ export const MessagePreview: React.FC<Props> = ({ message, preset }) => {
   const text = message.content || JSON.parse(message.content).text
   const username = `Anon-${message.pubkey.slice(0, 5)}`
   const date = message.created_at * 1000
-  const photo = `https://placekitten.com/200/201`
+  const photo = generateRandomPlacekitten() // TODO: pull this from the message user metadata
 
   const delivered = true
   const messagePreset: any = messagePresets[preset]
