@@ -13,6 +13,7 @@
     "web": "expo start --web",
     "postinstall": "npx patch-package",
     "test": "jest --watchAll",
+    "build:android": "eas build -p android",
     "build:ios": "eas build -p ios",
     "build:ios:local": "eas build --platform ios --local",
     "submit:ios": "eas submit -p ios",
