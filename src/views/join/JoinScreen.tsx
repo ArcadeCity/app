@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { Alert, StyleSheet, Text as RNText, TextInput, TouchableOpacity, View } from 'react-native'
 import { useStores } from 'stores/root-store'
 import { Button } from 'views/entry/Button'
-import { Text } from 'views/shared'
+import { Screen, Text } from 'views/shared'
 import { ACTIVE_OPACITY, color, palette, spacing, typography } from 'views/theme'
 import { FontAwesome } from '@expo/vector-icons'
 
@@ -27,7 +27,7 @@ export const JoinScreen = observer(({ navigation }: any) => {
     user.signup({ username, displayName, about })
   }
   return (
-    <View style={styles.container}>
+    <Screen preset='auto' style={styles.container} unsafe>
       <Text text='Username' preset='header' />
       <TextInput
         autoCapitalize='none'
@@ -72,7 +72,7 @@ export const JoinScreen = observer(({ navigation }: any) => {
           <RNText style={styles.textJoin}>CREATE ACCOUNT</RNText>
         </Button>
       </View>
-    </View>
+    </Screen>
   )
 })
 
