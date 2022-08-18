@@ -8,7 +8,6 @@ export const createKeypair = async (self: UserStore) => {
   self.setMnemonic(mnemonic)
   self.setPrivateKey(privateKey)
   self.setPublicKey(publicKey)
-  self.env.nostr.setKeys(publicKey, privateKey)
   const storeAvailable = await SecureStore.isAvailableAsync()
   if (storeAvailable) {
     await SecureStore.setItemAsync('ARCADE_NPUB', publicKey)

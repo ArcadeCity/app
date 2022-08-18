@@ -12,7 +12,6 @@ export const login = async (self: UserStore, text: string) => {
     self.setMnemonic(mnemonic)
     self.setPrivateKey(privateKey)
     self.setPublicKey(publicKey)
-    self.env.nostr.setKeys(publicKey, privateKey)
     const storeAvailable = await SecureStore.isAvailableAsync()
     if (storeAvailable) {
       await SecureStore.setItemAsync('ARCADE_NPUB', newAccountKeys.publicKey)
@@ -37,7 +36,6 @@ export const login = async (self: UserStore, text: string) => {
     const newAccountKeys: AccountKeys = { privateKey, publicKey }
     self.setPrivateKey(privateKey)
     self.setPublicKey(publicKey)
-    self.env.nostr.setKeys(publicKey, privateKey)
     const storeAvailable = await SecureStore.isAvailableAsync()
     if (storeAvailable) {
       await SecureStore.setItemAsync('ARCADE_NPUB', newAccountKeys.publicKey)

@@ -1,3 +1,4 @@
+import { display } from 'lib'
 import { NostrEventToSerialize, NostrKind, relayPool } from 'lib/nostr'
 import { timeNowInSeconds } from 'lib/timeNowInSeconds'
 
@@ -60,10 +61,15 @@ export class Nostr {
   async publish(eventObject: NostrEventToSerialize) {
     await this.pool.publish(eventObject, (status, url) => {
       if (status === 0) {
-        console.log(`publish request sent to ${url}`)
+        // console.log(`publish request sent to ${url}`)
       }
       if (status === 1) {
-        console.log(`event published by ${url}`) // , ev
+        // console.log(`event published by ${url}`) // , ev
+        display({
+          name: 'Nostr.publish',
+          preview: `Event published by ${url}`,
+          value: { eventObject },
+        })
       }
     })
   }
