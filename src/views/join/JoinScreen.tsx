@@ -13,6 +13,7 @@ export const JoinScreen = observer(() => {
   const [displayName, setDisplayName] = useState('')
   const [about, setAbout] = useState('')
   const regex = /^[a-zA-Z_\-0-9]+$/
+  const accountId = user.publicKey ? hexToNpub(user.publicKey) : '-'
   const pressCreate = () => {
     if (username.length < 3) {
       Alert.alert('Username too short', 'Please enter a username with at least 3 characters')
@@ -54,7 +55,7 @@ export const JoinScreen = observer(() => {
         style={styles.input}
       />
       <Text text='Account ID' preset='header' />
-      <Text text={hexToNpub(user.publicKey)} preset='descriptionSlim' style={{ marginTop: 10 }} />
+      <Text text={accountId} preset='descriptionSlim' style={{ marginTop: 10 }} />
       <Button width={300} height={70} onPress={pressCreate}>
         <RNText style={styles.textJoin}>CREATE ACCOUNT</RNText>
       </Button>
