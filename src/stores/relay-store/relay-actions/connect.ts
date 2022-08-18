@@ -29,4 +29,5 @@ export const connect = async (self: RelayStore) => {
   // self.env.nostr.pool.sub({ cb: onEvent, filter: { kinds: [1], limit: 15 } })
   self.env.nostr.pool.sub({ cb: onEvent, filter: { kinds: [40], limit: 15 } })
   self.env.nostr.pool.sub({ cb: onEvent, filter: { kinds: [41, 42], limit: 15 } })
+  return
 }

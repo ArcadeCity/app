@@ -59,16 +59,22 @@ export class Nostr {
   }
 
   async publish(eventObject: NostrEventToSerialize) {
+    this.ensureKeys()
+    display({
+      name: 'Nostr.publish',
+      preview: `Attempting to publish...`,
+      value: { eventObject },
+    })
     await this.pool.publish(eventObject, (status, url) => {
       if (status === 0) {
-        // console.log(`publish request sent to ${url}`)
+        console.log(`publish request sent to ${url}`)
       }
       if (status === 1) {
-        // console.log(`event published by ${url}`) // , ev
+        console.log(`event published by ${url}`) // , ev
         display({
           name: 'Nostr.publish',
           preview: `Event published by ${url}`,
-          value: { eventObject },
+          value: eventObject,
         })
       }
     })

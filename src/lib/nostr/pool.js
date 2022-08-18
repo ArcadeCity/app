@@ -134,7 +134,6 @@ export function relayPool() {
 
         if (globalPrivateKey) {
           event.sig = await signEvent(event, globalPrivateKey)
-          console.log('sig:', event.sig)
         } else if (globalSigningFunction) {
           event.sig = await globalSigningFunction(event)
           if (!event.sig) {
