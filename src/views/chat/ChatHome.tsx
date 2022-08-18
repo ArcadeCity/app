@@ -1,4 +1,4 @@
-import { values } from 'mobx'
+import { observer } from 'mobx-react-lite'
 import { FlatList, StyleSheet } from 'react-native'
 import { useStores } from 'stores/root-store'
 import { ChannelPreview } from './ChannelPreview'
@@ -10,7 +10,7 @@ interface Channel {
   picture: string
 }
 
-export const ChatHome = () => {
+export const ChatHome = observer(() => {
   const { relay } = useStores()
   const channels = relay.channels as Channel[]
   return (
@@ -21,7 +21,7 @@ export const ChatHome = () => {
       style={[styles.flatList]}
     />
   )
-}
+})
 
 const keyExtractor = (item: Channel) => item.id
 
