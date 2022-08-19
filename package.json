@@ -39,6 +39,7 @@
     "@scure/bip39": "1.1.0",
     "@shopify/react-native-skia": "0.1.141",
     "bech32": "^2.0.0",
+    "big-integer": "^1.6.51",
     "create-hash": "1.2.0",
     "expo": "~46.0.7",
     "expo-asset": "~8.6.1",
