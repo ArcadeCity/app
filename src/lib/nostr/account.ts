@@ -28,16 +28,11 @@ export const getKeysForMnemonic = (mnemonic: string) => {
 export const getKeysForNsec = (nsec: string) => {
   const decoded = bech32.decode(nsec)
   const privateKey = bech32.fromWords(decoded.words)
-  console.log('decoded', decoded)
-  console.log('privateKey after decode:', privateKey)
-  console.log('privateKey length:', privateKey.length)
   if (privateKey.length !== 32) {
     throw new Error('Invalid private key')
   }
   const publicKey = getPublicKey(Buffer.from(privateKey))
-  console.log('GOT PUBLICKEY:', publicKey)
   const hexKey = toHexString(privateKey)
-  console.log('hex priv key:', hexKey)
   return {
     privateKey: hexKey,
     publicKey,

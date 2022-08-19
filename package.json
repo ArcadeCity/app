@@ -13,10 +13,14 @@
     "web": "expo start --web",
     "postinstall": "npx patch-package",
     "test": "jest --watchAll",
+    "build:android": "eas build -p android",
+    "build:android:apk": "eas build -p android --profile apk",
     "build:ios": "eas build -p ios",
     "build:ios:local": "eas build --platform ios --local",
+    "submit:android": "eas submit -p android",
     "submit:ios": "eas submit -p ios",
-    "publish:ios": "eas update --branch production -p ios --message 'Update'"
+    "publish:ios": "eas update --branch production -p ios --message 'Update'",
+    "publish:android": "eas update --branch production -p android --message 'Update'"
   },
   "jest": {
     "preset": "jest-expo"
@@ -38,9 +42,11 @@
     "create-hash": "1.2.0",
     "expo": "~46.0.7",
     "expo-asset": "~8.6.1",
+    "expo-clipboard": "~3.1.0",
     "expo-constants": "~13.2.3",
     "expo-font": "~10.2.0",
     "expo-linking": "~3.2.2",
+    "expo-localization": "~13.1.0",
     "expo-random": "~12.3.0",
     "expo-secure-store": "~11.3.0",
     "expo-splash-screen": "~0.16.1",
@@ -48,6 +54,7 @@
     "expo-system-ui": "~1.3.0",
     "expo-updates": "~0.14.4",
     "expo-web-browser": "~11.0.0",
+    "i18n-js": "3.9.2",
     "mobx": "^6.6.1",
     "mobx-react-lite": "^3.4.0",
     "mobx-state-tree": "^5.1.6",

@@ -3,24 +3,36 @@ import { values } from 'mobx'
 import { applySnapshot, Instance, SnapshotOut, types } from 'mobx-state-tree'
 import { withEnvironment, withRootStore } from '../_extensions'
 import * as actions from './relay-actions'
-import { Event, EventModel } from './relay-models'
+import { Event, EventModel, UserMetadata, UserMetadataModel } from './relay-models'
 
 export const RelayStoreModel = types
   .model('RelayStore')
   .props({
     events: types.optional(types.map(EventModel), {}),
+    userMetadata: types.optional(types.map(UserMetadataModel), {}),
   })
   .extend(withEnvironment)
   .extend(withRootStore)
   .actions((self) => ({
+    /** Check that we have metadata for all users we have events for  */
+    checkAllUserMetadata: async (): Promise<void> =>
+      await actions.checkAllUserMetadata(self as RelayStore),
     /** Connect to Nostr relays */
     connect: async (): Promise<void> => await actions.connect(self as RelayStore),
+    /** Fetch user metadata for a given pubkey */
+    fetchUser: async (pubkey: string): Promise<void> =>
+      await actions.fetchUser(self as RelayStore, pubkey),
     /** Send a message to channel */
     sendChannelMessage: async (channelId: string, text: string): Promise<void> =>
       await actions.sendChannelMessage(self as RelayStore, channelId, text),
     /** Save event to store */
     addEvent: (event: Event) => {
       self.events.set(event.id, event)
+    },
+    /** Save user metadata to store */
+    addUserMetadata: (metadata: UserMetadata) => {
+      console.log('attempting to save:', metadata)
+      self.userMetadata.set(metadata.pubkey, metadata)
     },
     /** Reset this store to original state */
     reset() {
@@ -31,6 +43,27 @@ export const RelayStoreModel = types
     /** Get event by id */
     getEventById(id: string) {
       return self.events.get(id)
+    },
+    /** Get metadata for user */
+    getUserMetadata(pubkey: string) {
+      const events = values(self.events) as any
+      const metadataEvents = events
+        .filter((event: Event) => event.kind === 0)
+        .filter((event: Event) => event.pubkey === pubkey)
+        .sort((a: Event, b: Event) => b.created_at - a.created_at)
+
+      if (metadataEvents.length === 0) {
+        self.fetchUser(pubkey)
+        return null
+      }
+      const latest = metadataEvents[0]
+      const content = JSON.parse(latest.content) as any
+      return {
+        about: content.about ?? '',
+        displayName: content.displayName ?? '',
+        picture: content.picture ?? '',
+        username: content.name,
+      }
     },
     /** Return channels as list of normalized events with kind 40 */
     get channels() {

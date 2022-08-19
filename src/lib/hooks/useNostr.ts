@@ -5,5 +5,8 @@ export const useNostr = () => {
   const { relay } = useStores()
   useEffect(() => {
     relay.connect()
+    setTimeout(() => {
+      relay.checkAllUserMetadata()
+    }, 3000)
   }, [])
 }

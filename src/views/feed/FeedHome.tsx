@@ -17,8 +17,6 @@ export const FeedHome = observer(({ navigation }: RootTabScreenProps<'FeedHome'>
     .sort((a: Event, b: Event) => {
       return b.created_at - a.created_at
     })
-  console.log('events:', sortedEvents.length)
-  // .slice(20)
   const key = 'id'
   const arrayUniqueByKey: any[] = [
     ...new Map(sortedEvents.map((item: any) => [item[key], item])).values(),
@@ -35,12 +33,12 @@ export const FeedHome = observer(({ navigation }: RootTabScreenProps<'FeedHome'>
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{ padding: 20 }}
       />
-      <TouchableOpacity
+      {/* <TouchableOpacity
         activeOpacity={ACTIVE_OPACITY}
         style={styles.floatingButton}
         onPress={clickNewRequest}>
         <AntDesign name='plus' size={26} color='white' />
-      </TouchableOpacity>
+      </TouchableOpacity> */}
     </View>
   )
 })

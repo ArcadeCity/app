@@ -7,7 +7,7 @@ import {
 /* eslint-disable */
 export const RootNavigation = {
   navigate(_name: string, _params?: any) {
-    console.log('Yeah so uh, THIS DOES WHAT?')
+    console.log('????')
   },
   goBack() {},
   resetRoot(_state?: PartialState<NavigationState> | NavigationState) {},

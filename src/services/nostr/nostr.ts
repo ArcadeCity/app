@@ -1,4 +1,6 @@
+import { display } from 'lib'
 import { NostrEventToSerialize, NostrKind, relayPool } from 'lib/nostr'
+import { timeNowInSeconds } from 'lib/timeNowInSeconds'
 
 export class Nostr {
   pool: any
@@ -9,55 +11,89 @@ export class Nostr {
     this.pool = relayPool()
   }
 
-  async connect(publicKey: string, privateKey: string) {
+  async unsubscribeAll() {
+    this.pool.removeRelay('wss://relay.damus.io')
+    console.log('Unsubscibed from all relays')
+  }
+
+  setKeys(publicKey: string, privateKey: string) {
     this.publicKey = publicKey
     this.privateKey = privateKey
     this.pool.setPrivateKey(privateKey)
+  }
+
+  ensureKeys() {
+    if (!this.publicKey || !this.privateKey) {
+      throw new Error('No public or private key set')
+    }
+  }
+
+  async connect(publicKey: string, privateKey: string) {
+    this.setKeys(publicKey, privateKey)
     this.pool.addRelay('wss://relay.damus.io', { read: true, write: true })
     // this.createDummyChannels()
   }
 
   async sendChannelMessage(channelId: string, text: string) {
-    if (!this.publicKey) return
-    const date = new Date()
-    const dateTimeInSeconds = Math.floor(date.getTime() / 1000)
+    this.ensureKeys()
     const event: NostrEventToSerialize = {
       content: text,
-      created_at: dateTimeInSeconds,
+      created_at: timeNowInSeconds(),
       kind: NostrKind.channelmessage,
-      pubkey: this.publicKey,
+      pubkey: this.publicKey as string,
       tags: [['#e', channelId]],
     }
     this.publish(event)
   }
 
+  async saveMetadata(metadata) {
+    this.ensureKeys()
+    const event: NostrEventToSerialize = {
+      content: JSON.stringify(metadata),
+      created_at: timeNowInSeconds(),
+      kind: NostrKind.metadata,
+      pubkey: this.publicKey as string,
+      tags: [],
+    }
+    await this.publish(event)
+  }
+
   async publish(eventObject: NostrEventToSerialize) {
+    this.ensureKeys()
+    display({
+      name: 'Nostr.publish',
+      preview: `Attempting to publish...`,
+      value: { eventObject },
+    })
     await this.pool.publish(eventObject, (status, url) => {
       if (status === 0) {
         console.log(`publish request sent to ${url}`)
       }
       if (status === 1) {
         console.log(`event published by ${url}`) // , ev
+        display({
+          name: 'Nostr.publish',
+          preview: `Event published by ${url}`,
+          value: eventObject,
+        })
       }
     })
   }
 
   async publishTestEvent() {
-    if (!this.publicKey) return
-    const date = new Date()
-    const dateTimeInSeconds = Math.floor(date.getTime() / 1000)
+    this.ensureKeys()
     const event: NostrEventToSerialize = {
       content: 'Hello!',
-      created_at: dateTimeInSeconds,
+      created_at: timeNowInSeconds(),
       kind: 1,
-      pubkey: this.publicKey,
+      pubkey: this.publicKey as string,
       tags: [],
     }
     this.publish(event)
   }
 
   async createDummyChannels() {
-    if (!this.publicKey) return
+    this.ensureKeys()
     const channels = [
       {
         name: 'Bitcoin',
@@ -80,8 +116,6 @@ export class Nostr {
         picture: 'https://arcade.city/img/emails/rides.png',
       },
     ]
-    const date = new Date()
-    const dateTimeInSeconds = Math.floor(date.getTime() / 1000)
     channels.forEach((channel) => {
       const event: NostrEventToSerialize = {
         content: JSON.stringify({
@@ -89,7 +123,7 @@ export class Nostr {
           name: channel.name,
           picture: channel.picture,
         }),
-        created_at: dateTimeInSeconds,
+        created_at: timeNowInSeconds(),
         kind: 40,
         pubkey: this.publicKey as string,
         tags: [],
