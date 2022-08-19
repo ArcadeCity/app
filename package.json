@@ -14,6 +14,7 @@
     "postinstall": "npx patch-package",
     "test": "jest --watchAll",
     "build:android": "eas build -p android",
+    "build:android:apk": "eas build -p android --profile apk",
     "build:ios": "eas build -p ios",
     "build:ios:local": "eas build --platform ios --local",
     "submit:android": "eas submit -p android",
