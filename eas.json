@@ -15,6 +15,7 @@
       "channel": "production"
     },
     "apk": {
+      "developmentClient": true,
       "channel": "production",
       "android": {
         "buildType": "apk"
