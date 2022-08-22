@@ -8,6 +8,7 @@
   "main": "index.js",
   "scripts": {
     "start": "rm -rf dist && expo start",
+    "start:dev-client": "expo start --dev-client",
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
@@ -15,6 +16,7 @@
     "test": "jest --watchAll",
     "build:android": "eas build -p android",
     "build:android:apk": "eas build -p android --profile apk",
+    "build:android:development": "eas build --profile development --platform android",
     "build:ios": "eas build -p ios",
     "build:ios:local": "eas build --platform ios --local",
     "submit:android": "eas submit -p android",
@@ -46,6 +48,7 @@
     "expo-clipboard": "~3.1.0",
     "expo-constants": "~13.2.3",
     "expo-dev-client": "~1.2.1",
+    "expo-device": "~4.3.0",
     "expo-font": "~10.2.0",
     "expo-linking": "~3.2.2",
     "expo-localization": "~13.1.0",
@@ -72,6 +75,7 @@
     "react-native-webview": "11.23.0",
     "reactotron-mst": "^3.1.4",
     "reactotron-react-native": "^5.0.2",
+    "sentry-expo": "~5.0.0",
     "text-encoding-polyfill": "0.6.7"
   },
   "devDependencies": {

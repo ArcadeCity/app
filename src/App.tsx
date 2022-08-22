@@ -16,6 +16,7 @@ export const App = () => {
   useEffect(() => {
     ;(async () => {
       try {
+        console.log('???')
         // await initFonts()
         const initStore = await setupRootStore(null)
         setRootStore(initStore)

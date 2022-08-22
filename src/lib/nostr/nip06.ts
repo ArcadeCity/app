@@ -8,9 +8,14 @@ import { generateMnemonic, mnemonicToSeedSync, validateMnemonic } from '@scure/b
 import { wordlist } from '@scure/bip39/wordlists/english'
 
 export function privateKeyFromSeed(seed: string) {
+  console.log('here?')
+  console.log('is...', Buffer.from(seed, 'hex'))
   let root = HDKey.fromMasterSeed(Buffer.from(seed, 'hex'))
+  console.log('so')
   const key = root.derive(`m/44'/1237'/0'/0/0`).privateKey
+  console.log('key', key)
   if (!key) throw new Error('Failed to derive private key')
+  console.log('returning sometoihegoisndgoskng')
   return Buffer.from(key).toString('hex')
 }
 
