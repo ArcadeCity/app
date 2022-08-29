@@ -41,12 +41,17 @@ export function validateEvent(event) {
   return true
 }
 
-// export function verifySignature(event) {
-//   return secp256k1.schnorr.verify(event.sig, event.id, event.pubkey)
-// }
-
 export function verifySignature(event) {
-  return schnorr.verify(event.pubkey, event.id, Buffer.from(event.sig, 'hex'))
+  try {
+    schnorr.verify(
+      Buffer.from(event.pubkey, 'hex'),
+      Buffer.from(event.id, 'hex'),
+      Buffer.from(event.sig, 'hex')
+    )
+    return true
+  } catch (e) {
+    return false
+  }
 }
 
 export const signEvent = async (event, key) => {
