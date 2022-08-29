@@ -1,3 +1,5 @@
+console.log('BIGINT HERE IS?', typeof BigInt)
+
 export * from './account'
 export * from './bech32'
 export * from './nip01'

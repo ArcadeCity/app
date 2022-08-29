@@ -1,3 +1,4 @@
+import 'cbor-rn-prereqs'
 import { registerRootComponent } from 'expo'
 import { App } from './src/App'
 import * as Sentry from 'sentry-expo'

@@ -1,6 +1,7 @@
+// import * as secp256k1 from '@alephium/noble-secp256k1'
+import schnorr from 'bip-schnorr'
 import { Buffer } from 'buffer'
 import createHash from 'create-hash/browser'
-import * as secp256k1 from '@alephium/noble-secp256k1'
 
 export const formatNotice = (message: string) => JSON.stringify(['NOTICE', message])
 
@@ -92,7 +93,8 @@ export const serializeEvent = (event: NostrEventToSerialize) => {
 }
 
 export const signEvent = async (event: NostrEventToSign, key: string) => {
-  return Buffer.from(await secp256k1.schnorr.sign(getEventHash(event), key)).toString('hex')
+  return Buffer.from(await schnorr.sign(key, getEventHash(event))).toString('hex')
+  // 4return Buffer.from(await secp256k1.schnorr.sign(getEventHash(event), key)).toString('hex')
 }
 
 export const normalizeEvent = (event: any) =>
