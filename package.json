@@ -36,6 +36,9 @@
     "@react-spring/native": "^9.5.2",
     "@shopify/react-native-skia": "0.1.141",
     "bech32": "^2.0.0",
+    "bip-schnorr": "^0.6.6",
+    "bip32": "^3.0.1",
+    "bip39": "^3.0.4",
     "create-hash": "1.2.0",
     "expo": "~46.0.7",
     "expo-asset": "~8.6.1",
@@ -67,7 +70,8 @@
     "react-native-webview": "11.23.0",
     "reactotron-mst": "^3.1.4",
     "reactotron-react-native": "^5.0.2",
-    "text-encoding-polyfill": "0.6.7"
+    "text-encoding-polyfill": "0.6.7",
+    "tiny-secp256k1-v1": "npm:tiny-secp256k1@^1.1.6"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
