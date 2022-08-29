@@ -42,6 +42,11 @@ export function validateEvent(event) {
 }
 
 export function verifySignature(event) {
+  const thefuck = Buffer.from(event.pubkey, 'hex')
+  console.log('pubkey:', event.pubkey)
+  console.log(thefuck)
+  console.log(thefuck.byteLength)
+  console.log(thefuck.length)
   try {
     schnorr.verify(
       Buffer.from(event.pubkey, 'hex'),
@@ -50,12 +55,22 @@ export function verifySignature(event) {
     )
     return true
   } catch (e) {
+    console.log(e)
     return false
   }
 }
 
 export const signEvent = async (event, key) => {
+  const wat = validateEvent(event)
+  console.log('WAT:', wat)
+
   const eventHash = getEventHash(event)
   const eventBuffer = Buffer.from(eventHash, 'hex')
-  return Buffer.from(await schnorr.sign(key, eventBuffer)).toString('hex')
+  // console.log('whats this:', await schnorr.sign(key, eventBuffer))
+  const signatureBuffer = await schnorr.sign(key, eventBuffer)
+  // return Buffer.from(await schnorr.sign(key, eventBuffer)).toString('hex')
+  console.log(signatureBuffer)
+  const sig = signatureBuffer.toString('hex')
+  console.log(sig)
+  return sig
 }
