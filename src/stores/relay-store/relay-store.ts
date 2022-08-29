@@ -19,6 +19,9 @@ export const RelayStoreModel = types
       await actions.checkAllUserMetadata(self as RelayStore),
     /** Connect to Nostr relays */
     connect: async (): Promise<void> => await actions.connect(self as RelayStore),
+    /** Fetch messages for a given channelId */
+    fetchMessages: async (channelId: string): Promise<void> =>
+      await actions.fetchMessages(self as RelayStore, channelId),
     /** Fetch user metadata for a given pubkey */
     fetchUser: async (pubkey: string): Promise<void> =>
       await actions.fetchUser(self as RelayStore, pubkey),
@@ -92,7 +95,9 @@ export const RelayStoreModel = types
       return (
         events
           .filter((event: Event) => event.kind === 42)
-          .filter((event: Event) => isArrayInArray(['#e', channelId], event.tags))
+          .filter((event: Event) => isArrayInArray(['e', channelId], event.tags))
+          // .filter((event: Event) => isArrayInArray(['#e', channelId], event.tags))
+
           // .map((event: Event) => {
           //   const messageInfo = JSON.parse(event.content)
           //   const { message, sender } = messageInfo
