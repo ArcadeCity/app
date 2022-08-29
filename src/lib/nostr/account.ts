@@ -7,20 +7,8 @@ export const createNewAccount = () => {
   const mnemonic = generateSeedWords()
   const seed = seedFromWords(mnemonic)
   const { privateKey, publicKey } = keypairFromSeed(seed)
-  // const publicKey = getPublicKey(Buffer.from(privateKey, 'hex'))
   const pubbuffer = Buffer.from(publicKey, 'hex')
-  console.log(mnemonic)
-
-  // remove first byte from pubbuffer
   const pubbuffer2 = pubbuffer.slice(1)
-
-  console.log('PUBBUFFER LENGTH:', pubbuffer.length)
-  console.log('pubbuffer2 LENGTH:', pubbuffer2.length)
-
-  console.log('33byte pubkey:', publicKey)
-  console.log('32byte pubkey:', pubbuffer2.toString('hex'))
-
-  // console.log(pubbuffer)
   return {
     mnemonic,
     privateKey,
