@@ -79,6 +79,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     paddingLeft: 6,
     paddingRight: 6,
+    maxWidth: '100%',
   },
   sendButtonContainer: {
     marginLeft: 14,
