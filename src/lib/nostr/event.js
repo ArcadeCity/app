@@ -42,11 +42,6 @@ export function validateEvent(event) {
 }
 
 export function verifySignature(event) {
-  const thefuck = Buffer.from(event.pubkey, 'hex')
-  console.log('pubkey:', event.pubkey)
-  console.log(thefuck)
-  console.log(thefuck.byteLength)
-  console.log(thefuck.length)
   try {
     schnorr.verify(
       Buffer.from(event.pubkey, 'hex'),
