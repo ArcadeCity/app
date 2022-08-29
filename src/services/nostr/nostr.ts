@@ -41,7 +41,7 @@ export class Nostr {
       created_at: timeNowInSeconds(),
       kind: NostrKind.channelmessage,
       pubkey: this.publicKey as string,
-      tags: [['#e', channelId]],
+      tags: [['e', channelId]],
     }
     this.publish(event)
   }
