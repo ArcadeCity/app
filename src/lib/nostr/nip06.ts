@@ -16,6 +16,12 @@ export function keypairFromSeed(seed: string) {
   }
 }
 
+export function privateKeyFromSeed(seed: string) {
+  const root = bip32.fromSeed(Buffer.from(seed, 'hex'))
+  const key = root.derivePath(`m/44'/1237'/0'/0/0`)
+  return key.privateKey?.toString('hex')
+}
+
 export function generateSeedWords() {
   // @ts-expect-error
   return generateMnemonic(128, Random.getRandomBytes)
