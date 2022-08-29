@@ -1,13 +1,12 @@
 import { bech32 } from 'bech32'
 import { Buffer } from 'buffer'
 import { getPublicKey } from './keys'
-import { generateSeedWords, privateKeyFromSeed, seedFromWords } from './nip06'
+import { generateSeedWords, keypairFromSeed, seedFromWords } from './nip06'
 
 export const createNewAccount = () => {
   const mnemonic = generateSeedWords()
   const seed = seedFromWords(mnemonic)
-  const privateKey = privateKeyFromSeed(seed)
-  const publicKey = getPublicKey(Buffer.from(privateKey, 'hex'))
+  const { privateKey, publicKey } = keypairFromSeed(seed)
   return {
     mnemonic,
     privateKey,
@@ -17,7 +16,7 @@ export const createNewAccount = () => {
 
 export const getKeysForMnemonic = (mnemonic: string) => {
   const seed = seedFromWords(mnemonic)
-  const privateKey = privateKeyFromSeed(seed)
+  const privateKey = keypairFromSeed(seed).privateKey as string
   const publicKey = getPublicKey(Buffer.from(privateKey, 'hex'))
   return {
     privateKey,
