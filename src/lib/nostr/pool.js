@@ -1,3 +1,4 @@
+import { display } from 'lib'
 import { getEventHash, verifySignature, signEvent } from './event.js'
 import { relayConnect, normalizeRelayURL } from './relay.js'
 
@@ -158,6 +159,15 @@ export function relayPool() {
       let maxTargets = poolPolicy.randomChoice ? poolPolicy.randomChoice : writeable.length
 
       let successes = 0
+
+      console.log('ATTEMPTING TO VERIFY SIGNATURE...')
+      let verified = verifySignature(event)
+      console.log('verified:', verified)
+
+      display({
+        name: 'publishing...',
+        value: event,
+      })
 
       if (poolPolicy.wait) {
         for (let i = 0; i < writeable.length; i++) {
