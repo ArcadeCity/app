@@ -69,6 +69,11 @@ export const RelayStoreModel = types
       }
     },
     /** Return channels as list of normalized events with kind 40 */
+    get feedevents() {
+      const events = values(self.events) as any
+      return events.filter((event: Event) => event.kind === 1)
+    },
+    /** Return channels as list of normalized events with kind 40 */
     get channels() {
       const events = values(self.events) as any
       return events
