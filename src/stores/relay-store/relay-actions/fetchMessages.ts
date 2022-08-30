@@ -1,6 +1,4 @@
 import { display } from 'lib'
-import { delay } from 'lib/delay'
-import { generateRandomPlacekitten } from 'lib/placekitten'
 import { RelayStore } from '../relay-store'
 
 export const fetchMessages = async (self: RelayStore, channelId: string) => {
@@ -29,8 +27,10 @@ export const fetchMessages = async (self: RelayStore, channelId: string) => {
 
   const sub = self.env.nostr.pool.sub({
     cb: onEvent,
-    filter: { kinds: [42], '#e': channelId, limit: 50 },
+    filter: { kinds: [42], '#e': channelId, limit: 25 },
   })
-  await delay(1000)
-  sub.unsub()
+
+  setTimeout(() => {
+    sub.unsub()
+  }, 1000)
 }
