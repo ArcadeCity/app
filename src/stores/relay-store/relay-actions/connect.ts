@@ -37,10 +37,15 @@ export const connect = async (self: RelayStore) => {
         '6c1ab7e5f8cf33874e5b9d85e000c0683d3133ec8294a5009d2f38854aceafb0',
         '9cb8bf059ae86df40407cfa5871c2111b09d3fb2c85c5be67306fcf6b3bab729',
       ],
-      // authors: ['72e40635ef243ce4937b0083593af773d35487b3b5147f47d4d62576e97cd2f9'],
-      // limit: 50,
     },
   })
-  // self.env.nostr.pool.sub({ cb: onEvent, filter: { kinds: [41], limit: 1 } })
+
+  // And some feed posts - if we don't have any
+  if (self.feedevents.length === 0) {
+    self.env.nostr.pool.sub({ cb: onEvent, filter: { kinds: [1], limit: 15 } })
+  } else {
+    console.log('Skipping feedevents sub')
+  }
+
   return
 }
