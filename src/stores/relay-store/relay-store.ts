@@ -95,7 +95,11 @@ export const RelayStoreModel = types
       return (
         events
           .filter((event: Event) => event.kind === 42)
-          .filter((event: Event) => isArrayInArray(['e', channelId], event.tags))
+          .filter(
+            (event: Event) =>
+              isArrayInArray(['e', channelId], event.tags) ||
+              isArrayInArray(['#e', channelId], event.tags)
+          )
           // .filter((event: Event) => isArrayInArray(['#e', channelId], event.tags))
 
           // .map((event: Event) => {
