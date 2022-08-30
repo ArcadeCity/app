@@ -56,16 +56,9 @@ export function verifySignature(event) {
 }
 
 export const signEvent = async (event, key) => {
-  const wat = validateEvent(event)
-  console.log('WAT:', wat)
-
   const eventHash = getEventHash(event)
   const eventBuffer = Buffer.from(eventHash, 'hex')
-  // console.log('whats this:', await schnorr.sign(key, eventBuffer))
   const signatureBuffer = await schnorr.sign(key, eventBuffer)
-  // return Buffer.from(await schnorr.sign(key, eventBuffer)).toString('hex')
-  console.log(signatureBuffer)
   const sig = signatureBuffer.toString('hex')
-  console.log(sig)
   return sig
 }
