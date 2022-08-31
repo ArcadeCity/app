@@ -26,8 +26,26 @@ export const connect = async (self: RelayStore) => {
     }
   }
 
-  self.env.nostr.pool.sub({ cb: onEvent, filter: { kinds: [40], limit: 5 } })
-  self.env.nostr.pool.sub({ cb: onEvent, filter: { kinds: [41, 42], limit: 25 } })
-  self.env.nostr.pool.sub({ cb: onEvent, filter: { kinds: [1], limit: 25 } })
+  // Subscribe only to the channels we started
+  self.env.nostr.pool.sub({
+    cb: onEvent,
+    filter: {
+      kinds: [40],
+      ids: [
+        'f06a690997a1b7d8283c90a7224eb8b7fe96b7c3d3d8cc7b2e7f743532c02b42',
+        'cc7ace95dcd091e8b2822b4c3f71dce88aece2adff66eaaea362caa8da8563b7',
+        '6c1ab7e5f8cf33874e5b9d85e000c0683d3133ec8294a5009d2f38854aceafb0',
+        '9cb8bf059ae86df40407cfa5871c2111b09d3fb2c85c5be67306fcf6b3bab729',
+      ],
+    },
+  })
+
+  // And some feed posts - if we don't have any
+  if (self.feedevents.length === 0) {
+    self.env.nostr.pool.sub({ cb: onEvent, filter: { kinds: [1], limit: 15 } })
+  } else {
+    console.log('Skipping feedevents sub')
+  }
+
   return
 }

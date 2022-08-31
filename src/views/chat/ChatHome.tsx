@@ -8,6 +8,7 @@ interface Channel {
   id: string
   name: string
   picture: string
+  pubkey: string
 }
 
 export const ChatHome = observer(() => {

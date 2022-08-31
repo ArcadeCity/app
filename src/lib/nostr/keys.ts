@@ -1,10 +1,18 @@
+import BigInteger from 'bigi'
+import { convert } from 'bip-schnorr'
 import { Buffer } from 'buffer'
-import * as secp256k1 from '@alephium/noble-secp256k1'
+import ecurve from 'ecurve'
 
-export function generatePrivateKey() {
-  return Buffer.from(secp256k1.utils.randomPrivateKey()).toString('hex')
-}
+const curve = ecurve.getCurveByName('secp256k1')
+const G = curve.G
 
+/**
+ * Get the public key from a private key.
+ * We can't use noble/secp256k1 because the BigInt shim doesn't work on Android.
+ * So we borrow point multiplication code from guggero's bip-schnorr library.
+ */
 export function getPublicKey(privateKey: Buffer) {
-  return Buffer.from(secp256k1.schnorr.getPublicKey(privateKey)).toString('hex')
+  const P = G.multiply(BigInteger.fromBuffer(privateKey))
+  const Px = convert.intToBuffer(P.affineX)
+  return Px.toString('hex')
 }

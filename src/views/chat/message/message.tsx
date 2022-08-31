@@ -19,7 +19,6 @@ interface Props {
 export const MessagePreview: React.FC<Props> = ({ message, preset }) => {
   const { relay } = useStores()
   const metadata = relay.getUserMetadata(message.pubkey)
-  console.log(metadata)
 
   const username =
     metadata?.displayName || metadata?.username || `Anon-${message.pubkey.slice(0, 5)}`

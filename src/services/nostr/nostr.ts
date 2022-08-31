@@ -13,7 +13,7 @@ export class Nostr {
 
   async unsubscribeAll() {
     this.pool.removeRelay('wss://relay.damus.io')
-    console.log('Unsubscibed from all relays')
+    console.log('Unsubscribed from all relays')
   }
 
   setKeys(publicKey: string, privateKey: string) {
@@ -41,7 +41,7 @@ export class Nostr {
       created_at: timeNowInSeconds(),
       kind: NostrKind.channelmessage,
       pubkey: this.publicKey as string,
-      tags: [['#e', channelId]],
+      tags: [['e', channelId]],
     }
     this.publish(event)
   }

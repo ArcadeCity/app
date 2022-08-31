@@ -1,4 +1,5 @@
 import { observer } from 'mobx-react-lite'
+import { useEffect } from 'react'
 import { FlatList, StyleSheet, View } from 'react-native'
 import { useStores } from 'stores/root-store'
 import { color, spacing } from 'views/theme'
@@ -15,6 +16,12 @@ export const MessageList = observer(() => {
   const route = useRoute<any>()
   const channelId = route?.params?.id
   const messages = relay.getMessagesForChannel(channelId)
+
+  useEffect(() => {
+    if (messages.length === 0) {
+      relay.fetchMessages(channelId)
+    }
+  }, [messages])
 
   const renderItem = ({ item }: { item: Message }) => (
     <MessagePreview message={item} preset={user.publicKey === item.pubkey ? 'sent' : 'received'} />

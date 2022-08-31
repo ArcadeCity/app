@@ -1,6 +1,7 @@
 import { Buffer } from 'buffer'
 import createHash from 'create-hash/browser'
-import * as secp256k1 from '@alephium/noble-secp256k1'
+import schnorr from 'bip-schnorr'
+// import * as secp256k1 from '@alephium/noble-secp256k1'
 
 export function getBlankEvent() {
   return {
@@ -41,9 +42,23 @@ export function validateEvent(event) {
 }
 
 export function verifySignature(event) {
-  return secp256k1.schnorr.verify(event.sig, event.id, event.pubkey)
+  try {
+    schnorr.verify(
+      Buffer.from(event.pubkey, 'hex'),
+      Buffer.from(event.id, 'hex'),
+      Buffer.from(event.sig, 'hex')
+    )
+    return true
+  } catch (e) {
+    console.log(e)
+    return false
+  }
 }
 
-export async function signEvent(event, key) {
-  return Buffer.from(await secp256k1.schnorr.sign(getEventHash(event), key)).toString('hex')
+export const signEvent = async (event, key) => {
+  const eventHash = getEventHash(event)
+  const eventBuffer = Buffer.from(eventHash, 'hex')
+  const signatureBuffer = await schnorr.sign(key, eventBuffer)
+  const sig = signatureBuffer.toString('hex')
+  return sig
 }
