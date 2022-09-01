@@ -19,6 +19,8 @@ export const RelayStoreModel = types
       await actions.checkAllUserMetadata(self as RelayStore),
     /** Connect to Nostr relays */
     connect: async (): Promise<void> => await actions.connect(self as RelayStore),
+    /** Fetch recent text posts from global feed */
+    fetchFeedPosts: async (): Promise<void> => await actions.fetchFeedPosts(self as RelayStore),
     /** Fetch messages for a given channelId */
     fetchMessages: async (channelId: string): Promise<void> =>
       await actions.fetchMessages(self as RelayStore, channelId),
