@@ -22,8 +22,8 @@ export const RelayStoreModel = types
     /** Fetch recent text posts from global feed */
     fetchFeedPosts: async (): Promise<void> => await actions.fetchFeedPosts(self as RelayStore),
     /** Fetch messages for a given channelId */
-    fetchMessages: async (channelId: string): Promise<void> =>
-      await actions.fetchMessages(self as RelayStore, channelId),
+    fetchMessages: async (channelId: string, actuallyFetch: boolean): Promise<void> =>
+      await actions.fetchMessages(self as RelayStore, channelId, actuallyFetch),
     /** Fetch user metadata for a given pubkey */
     fetchUser: async (pubkey: string): Promise<void> =>
       await actions.fetchUser(self as RelayStore, pubkey),

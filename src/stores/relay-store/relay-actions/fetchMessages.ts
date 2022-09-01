@@ -1,7 +1,11 @@
 import { display } from 'lib'
 import { RelayStore } from '../relay-store'
 
-export const fetchMessages = async (self: RelayStore, channelId: string) => {
+export const fetchMessages = async (
+  self: RelayStore,
+  channelId: string,
+  actuallyFetch: boolean
+) => {
   display({
     name: 'fetchMessages',
     preview: `Fetching messages for channel ${channelId}`,
@@ -27,6 +31,6 @@ export const fetchMessages = async (self: RelayStore, channelId: string) => {
 
   self.env.nostr.pool.sub({
     cb: onEvent,
-    filter: { kinds: [42], '#e': channelId, limit: 75 },
+    filter: { kinds: [42], '#e': channelId, limit: actuallyFetch ? 75 : 2 },
   })
 }
