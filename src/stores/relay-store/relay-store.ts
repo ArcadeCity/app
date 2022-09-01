@@ -56,7 +56,7 @@ export const RelayStoreModel = types
         .sort((a: Event, b: Event) => b.created_at - a.created_at)
 
       if (metadataEvents.length === 0) {
-        self.fetchUser(pubkey)
+        // self.fetchUser(pubkey)
         return null
       }
       const latest = metadataEvents[0]
