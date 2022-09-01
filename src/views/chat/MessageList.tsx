@@ -18,10 +18,8 @@ export const MessageList = observer(() => {
   const messages = relay.getMessagesForChannel(channelId)
 
   useEffect(() => {
-    if (messages.length === 0) {
-      relay.fetchMessages(channelId)
-    }
-  }, [messages])
+    relay.fetchMessages(channelId)
+  }, [channelId])
 
   const renderItem = ({ item }: { item: Message }) => (
     <MessagePreview message={item} preset={user.publicKey === item.pubkey ? 'sent' : 'received'} />
