@@ -19,9 +19,11 @@ export const RelayStoreModel = types
       await actions.checkAllUserMetadata(self as RelayStore),
     /** Connect to Nostr relays */
     connect: async (): Promise<void> => await actions.connect(self as RelayStore),
+    /** Fetch recent text posts from global feed */
+    fetchFeedPosts: async (): Promise<void> => await actions.fetchFeedPosts(self as RelayStore),
     /** Fetch messages for a given channelId */
-    fetchMessages: async (channelId: string): Promise<void> =>
-      await actions.fetchMessages(self as RelayStore, channelId),
+    fetchMessages: async (channelId: string, actuallyFetch: boolean): Promise<void> =>
+      await actions.fetchMessages(self as RelayStore, channelId, actuallyFetch),
     /** Fetch user metadata for a given pubkey */
     fetchUser: async (pubkey: string): Promise<void> =>
       await actions.fetchUser(self as RelayStore, pubkey),
@@ -56,7 +58,7 @@ export const RelayStoreModel = types
         .sort((a: Event, b: Event) => b.created_at - a.created_at)
 
       if (metadataEvents.length === 0) {
-        self.fetchUser(pubkey)
+        // self.fetchUser(pubkey)
         return null
       }
       const latest = metadataEvents[0]

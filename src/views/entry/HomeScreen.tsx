@@ -4,7 +4,6 @@ import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { FadeInMap } from 'views/map'
 import { palette, spacing, typography } from 'views/theme'
 import { Button } from './Button'
-import { Filter } from './Filter'
 import { Logo } from './Logo'
 
 export const HomeScreen = ({ navigation }) => {
@@ -16,9 +15,6 @@ export const HomeScreen = ({ navigation }) => {
   }, [])
   return (
     <View style={styles.container}>
-      <View style={styles.containerFadeout} pointerEvents='none'>
-        {show && <Filter />}
-      </View>
       <MotiView
         style={styles.containerLogo}
         delay={2500}

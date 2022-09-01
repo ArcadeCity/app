@@ -40,12 +40,5 @@ export const connect = async (self: RelayStore) => {
     },
   })
 
-  // And some feed posts - if we don't have any
-  if (self.feedevents.length === 0) {
-    self.env.nostr.pool.sub({ cb: onEvent, filter: { kinds: [1], limit: 15 } })
-  } else {
-    console.log('Skipping feedevents sub')
-  }
-
   return
 }
