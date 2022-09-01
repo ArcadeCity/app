@@ -25,12 +25,8 @@ export const fetchMessages = async (self: RelayStore, channelId: string) => {
     }
   }
 
-  const sub = self.env.nostr.pool.sub({
+  self.env.nostr.pool.sub({
     cb: onEvent,
-    filter: { kinds: [42], '#e': channelId, limit: 25 },
+    filter: { kinds: [42], '#e': channelId, limit: 75 },
   })
-
-  setTimeout(() => {
-    sub.unsub()
-  }, 1000)
 }
