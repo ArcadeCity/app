@@ -2,11 +2,15 @@ import { useEffect } from 'react'
 import { useStores } from 'stores/root-store'
 
 export const useNostr = () => {
-  const { relay } = useStores()
+  const { relay, user } = useStores()
   useEffect(() => {
+    if (!user.authed) return
     relay.connect()
+
+    relay.fetchUser(user.publicKey as string)
+
     setTimeout(() => {
       relay.checkAllUserMetadata()
     }, 3000)
-  }, [])
+  }, [user.authed])
 }
