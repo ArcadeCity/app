@@ -1,52 +1,39 @@
-import 'expo-dev-client'
-import 'text-encoding-polyfill'
-import 'lib/ignore-warnings'
-import { StatusBar } from 'expo-status-bar'
-import { useCachedResources, useExpoUpdates } from 'lib/hooks'
-import { useEffect, useMemo, useState } from 'react'
-import { SafeAreaProvider } from 'react-native-safe-area-context'
-import { RootStore, RootStoreProvider, setupRootStore } from 'stores/root-store'
-import { LoadSplash } from 'views/loading'
-import { Navigation } from './navigation'
+import React, { Component } from 'react'
+import { Platform, StyleSheet, View } from 'react-native'
+import MapboxGL from '@rnmapbox/maps'
 
-export const App = () => {
-  const [rootStore, setRootStore] = useState<RootStore | undefined>(undefined)
-  const [ready, setReady] = useState(false)
-  const isLoadingComplete = useCachedResources()
-  useExpoUpdates(3)
+MapboxGL.setWellKnownTileServer(Platform.OS === 'android' ? 'Mapbox' : 'mapbox')
+MapboxGL.setAccessToken(
+  'pk.eyJ1IjoiYWNsaW9ucyIsImEiOiJjamVhMmNtY2swaXNtMnBsbnB2aDVqNTBiIn0.gM_i1jhawFz2EpKBX4VmwQ'
+)
 
-  useEffect(() => {
-    ;(async () => {
-      try {
-        // await initFonts()
-        const initStore = await setupRootStore(null)
-        setRootStore(initStore)
-        // await delay(500)
-        setReady(true)
-      } catch (e: any) {
-        // notify(e)
-        console.log(e)
-      }
-    })()
-  }, [])
+const styles = StyleSheet.create({
+  page: {
+    flex: 1,
+    width: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#F5FCFF',
+  },
+  container: {
+    flex: 1,
+    height: '100%',
+    width: '100%',
+    backgroundColor: 'tomato',
+  },
+  map: {
+    flex: 1,
+  },
+})
 
-  const componentToRender = useMemo(() => {
-    return !isLoadingComplete || !ready || !rootStore ? (
-      <LoadSplash ready={false} />
-    ) : (
-      <RootStoreProvider value={rootStore}>
-        <SafeAreaProvider>
-          <Navigation />
-        </SafeAreaProvider>
-      </RootStoreProvider>
+export class App extends Component {
+  render() {
+    return (
+      <View style={styles.page}>
+        <View style={styles.container}>
+          <MapboxGL.MapView style={styles.map} />
+        </View>
+      </View>
     )
-  }, [isLoadingComplete, ready, rootStore])
-
-  return (
-    <>
-      <StatusBar style='light' />
-      <LoadSplash ready={isLoadingComplete} />
-      {componentToRender}
-    </>
-  )
+  }
 }
