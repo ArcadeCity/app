@@ -1,4 +1,5 @@
 import 'text-encoding-polyfill'
+import 'lib/ignore-warnings'
 import { StatusBar } from 'expo-status-bar'
 import { useCachedResources, useExpoUpdates } from 'lib/hooks'
 import { useEffect, useMemo, useState } from 'react'
