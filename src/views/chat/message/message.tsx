@@ -16,7 +16,7 @@ interface Props {
   setSelectedPlayer?: any
 }
 
-export const MessagePreview: React.FC<Props> = ({ message, preset }) => {
+export const MessagePreview: React.FC<Props> = React.memo(({ message, preset }) => {
   const { relay } = useStores()
   const metadata = relay.getUserMetadata(message.pubkey)
 
@@ -67,4 +67,4 @@ export const MessagePreview: React.FC<Props> = ({ message, preset }) => {
       </View>
     </View>
   )
-}
+})
