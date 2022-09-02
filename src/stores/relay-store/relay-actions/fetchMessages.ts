@@ -31,6 +31,6 @@ export const fetchMessages = async (
 
   self.env.nostr.pool.sub({
     cb: onEvent,
-    filter: { kinds: [42], '#e': channelId, limit: actuallyFetch ? 75 : 2 },
+    filter: { kinds: [42], '#e': [channelId], limit: actuallyFetch ? 75 : 2 },
   })
 }
