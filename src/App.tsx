@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Platform, StyleSheet, View } from 'react-native'
+import { color, palette } from 'views/theme'
 import MapboxGL from '@rnmapbox/maps'
 
 MapboxGL.setWellKnownTileServer(Platform.OS === 'android' ? 'Mapbox' : 'mapbox')
@@ -19,7 +20,7 @@ const styles = StyleSheet.create({
     flex: 1,
     height: '100%',
     width: '100%',
-    backgroundColor: 'tomato',
+    backgroundColor: color.background,
   },
   map: {
     flex: 1,
@@ -31,9 +32,14 @@ export class App extends Component {
     return (
       <View style={styles.page}>
         <View style={styles.container}>
-          <MapboxGL.MapView style={styles.map} />
+          <MapboxGL.MapView style={styles.map} styleURL={mapStyles.main} />
         </View>
       </View>
     )
   }
+}
+
+const mapStyles = {
+  blank: 'mapbox://styles/aclions/cjoo2gldl3bio2rmktwhcy0qh',
+  main: 'mapbox://styles/aclions/cjeai04xo08k02rozqsi9di5a',
 }
