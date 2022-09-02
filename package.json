@@ -15,6 +15,7 @@
     "test": "jest --watchAll",
     "build:android": "eas build -p android",
     "build:android:apk": "eas build -p android --profile apk",
+    "build:android:dev": "eas build --profile development --platform android",
     "build:ios": "eas build -p ios",
     "build:ios:dev": "eas build --profile development --platform ios",
     "build:ios:local": "eas build --platform ios --local",
