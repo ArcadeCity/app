@@ -32,7 +32,12 @@ export class App extends Component {
     return (
       <View style={styles.page}>
         <View style={styles.container}>
-          <MapboxGL.MapView style={styles.map} styleURL={mapStyles.main} />
+          <MapboxGL.MapView
+            pitchEnabled={false}
+            rotateEnabled={false}
+            style={styles.map}
+            styleURL={mapStyles.main}
+          />
         </View>
       </View>
     )
