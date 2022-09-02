@@ -18,7 +18,8 @@ export const MessageList = observer(() => {
   const messages = relay.getMessagesForChannel(channelId)
 
   useEffect(() => {
-    relay.fetchMessages(channelId, messages.length === 0)
+    relay.fetchMessages(channelId, messages.length < 4)
+    relay.checkAllUserMetadata(channelId)
   }, [channelId])
 
   const renderItem = ({ item }: { item: Message }) => (
@@ -28,7 +29,8 @@ export const MessageList = observer(() => {
   return (
     <View style={styles.container}>
       <FlatList
-        data={messages}
+        inverted
+        data={[...messages].reverse()}
         keyExtractor={keyExtractor}
         renderItem={renderItem}
         style={styles.flatList}

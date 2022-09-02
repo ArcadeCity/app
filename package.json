@@ -20,7 +20,8 @@
     "submit:android": "eas submit -p android",
     "submit:ios": "eas submit -p ios",
     "publish:ios": "eas update --branch production -p ios --message 'Update'",
-    "publish:android": "eas update --branch production -p android --message 'Update'"
+    "publish:android": "eas update --branch production -p android --message 'Update'",
+    "publish:both": "eas update --branch production --message 'Update'"
   },
   "jest": {
     "preset": "jest-expo"

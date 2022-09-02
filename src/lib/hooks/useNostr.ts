@@ -6,11 +6,6 @@ export const useNostr = () => {
   useEffect(() => {
     if (!user.authed) return
     relay.connect()
-
     relay.fetchUser(user.publicKey as string)
-
-    setTimeout(() => {
-      relay.checkAllUserMetadata()
-    }, 3000)
   }, [user.authed])
 }
