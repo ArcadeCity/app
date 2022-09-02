@@ -29,7 +29,8 @@ export const MessageList = observer(() => {
   return (
     <View style={styles.container}>
       <FlatList
-        data={messages}
+        inverted
+        data={[...messages].reverse()}
         keyExtractor={keyExtractor}
         renderItem={renderItem}
         style={styles.flatList}
