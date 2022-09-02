@@ -18,7 +18,8 @@ export const MessageList = observer(() => {
   const messages = relay.getMessagesForChannel(channelId)
 
   useEffect(() => {
-    relay.fetchMessages(channelId, messages.length === 0)
+    relay.fetchMessages(channelId, messages.length < 4)
+    relay.checkAllUserMetadata(channelId)
   }, [channelId])
 
   const renderItem = ({ item }: { item: Message }) => (
