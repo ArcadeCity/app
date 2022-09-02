@@ -41,6 +41,14 @@
       "eas": {
         "projectId": "28e80363-f5c2-4d51-9f81-33d7f09aa738"
       }
-    }
+    },
+    "plugins": [
+      [
+        "@rnmapbox/maps",
+        {
+          "RNMapboxMapsImpl": "maplibre"
+        }
+      ]
+    ]
   }
 }
