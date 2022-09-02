@@ -14,9 +14,9 @@ export const RelayStoreModel = types
   .extend(withEnvironment)
   .extend(withRootStore)
   .actions((self) => ({
-    /** Check that we have metadata for all users we have events for  */
-    checkAllUserMetadata: async (): Promise<void> =>
-      await actions.checkAllUserMetadata(self as RelayStore),
+    /** Check that we have metadata for all users we have events for - now requiring a channelId */
+    checkAllUserMetadata: async (channelId: string): Promise<void> =>
+      await actions.checkAllUserMetadata(self as RelayStore, channelId),
     /** Connect to Nostr relays */
     connect: async (): Promise<void> => await actions.connect(self as RelayStore),
     /** Fetch recent text posts from global feed */
