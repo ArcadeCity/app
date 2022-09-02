@@ -1,3 +1,4 @@
+import 'expo-dev-client'
 import 'text-encoding-polyfill'
 import 'lib/ignore-warnings'
 import { StatusBar } from 'expo-status-bar'
