@@ -1,7 +1,7 @@
 {
   "name": "@arcadecity/app",
   "description": "The Bitcoin gig economy",
-  "version": "6.0.0",
+  "version": "6.0.1",
   "repository": "git@github.com:ArcadeCity/arcade.git",
   "author": "Christopher David <chris@arcade.city>",
   "license": "CC0-1.0",
@@ -16,6 +16,7 @@
     "build:android": "eas build -p android",
     "build:android:apk": "eas build -p android --profile apk",
     "build:ios": "eas build -p ios",
+    "build:ios:dev": "eas build --profile development --platform ios",
     "build:ios:local": "eas build --platform ios --local",
     "submit:android": "eas submit -p android",
     "submit:ios": "eas submit -p ios",
