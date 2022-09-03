@@ -1,10 +1,13 @@
 import * as React from 'react'
 import { Alert, View } from 'react-native'
+import { Breathe } from 'views/skia/Breathe'
+import { HelloWorld } from 'views/skia/HelloWorld'
 import { images } from 'views/theme'
 import MapboxGL from '@rnmapbox/maps'
 import { feature, Feature, featureCollection, FeatureCollection } from '@turf/helpers'
 import { Coordinate } from '../mapbox/mapbox.props'
 import * as MapStyles from '../mapbox/mapbox.styles'
+import { Blue } from '../markers/Blue'
 
 interface Props {
   centerCoordinate: Coordinate
@@ -44,18 +47,25 @@ export const DemoMap = ({ centerCoordinate, style, zoomLevel = 11 }: Props) => {
         }}
       />
 
-      <MapboxGL.ShapeSource
+      {/* <MapboxGL.ShapeSource
         id='guildCreate'
         // onPress={(e) => console.log(e.features)}
         onPress={() => Alert.alert('PlebLab!')}
         // @ts-expect-error 1005
         shape={guildShape}>
         <MapboxGL.SymbolLayer id='guildImage' style={MapStyles.layerStyles.bigGuildImage} />
-      </MapboxGL.ShapeSource>
+      </MapboxGL.ShapeSource> */}
       <MapboxGL.Images images={mapImages} />
-      {/* <MapboxGL.MarkerView coordinate={centerCoordinate} id='wat'>
-        <View style={{ width: 30, height: 30, backgroundColor: 'green' }} />
-      </MapboxGL.MarkerView> */}
+      <MapboxGL.MarkerView coordinate={centerCoordinate} id='wat'>
+        {/* <View style={{ width: 30, height: 30, backgroundColor: 'green' }} /> */}
+        {/* <HelloWorld /> */}
+        {/* <View style={{ width: 200, height: 200 }}>
+          <Breathe />
+        </View> */}
+        <View style={{ opacity: 0.7 }}>
+          <Blue />
+        </View>
+      </MapboxGL.MarkerView>
     </MapboxGL.MapView>
   )
 }
