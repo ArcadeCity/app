@@ -9,6 +9,7 @@ import { Coordinate } from '../mapbox/mapbox.props'
 import * as MapStyles from '../mapbox/mapbox.styles'
 import { ImageMarker } from '../markers'
 import { Blue } from '../markers/Blue'
+import { ModelMarker } from '../markers/ModelMarker'
 
 interface Props {
   centerCoordinate: Coordinate
@@ -66,7 +67,8 @@ export const DemoMap = ({ centerCoordinate, style, zoomLevel = 11 }: Props) => {
         {/* <View style={{ opacity: 0.7 }}>
           <Blue />
         </View> */}
-        <ImageMarker image={images.pleblab} />
+        {/* <ImageMarker image={images.pleblab} /> */}
+        <ModelMarker />
       </MapboxGL.MarkerView>
     </MapboxGL.MapView>
   )
