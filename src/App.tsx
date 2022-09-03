@@ -12,29 +12,18 @@ MapboxGL.setAccessToken(
 export const App = () => {
   return (
     <View style={styles.page}>
-      <View style={styles.container}>
-        <DemoMap
-          centerCoordinate={[PLEBLAB_COORDS.longitude, PLEBLAB_COORDS.latitude]}
-          zoomLevel={15}
-        />
-      </View>
+      <DemoMap
+        centerCoordinate={[PLEBLAB_COORDS.longitude, PLEBLAB_COORDS.latitude]}
+        zoomLevel={15}
+      />
     </View>
   )
 }
 
 const styles = StyleSheet.create({
-  container: {
-    backgroundColor: color.background,
-    flex: 1,
-    height: '100%',
-    width: '100%',
-  },
-  map: {
-    flex: 1,
-  },
   page: {
     alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    backgroundColor: color.background,
     flex: 1,
     justifyContent: 'center',
     width: '100%',
