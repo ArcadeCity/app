@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { Alert, View } from 'react-native'
 import { images } from 'views/theme'
 import MapboxGL from '@rnmapbox/maps'
 import { feature, Feature, featureCollection, FeatureCollection } from '@turf/helpers'
@@ -30,7 +31,6 @@ export const DemoMap = ({ centerCoordinate, style, zoomLevel = 11 }: Props) => {
   const guildShape = getOneGuildShape()
   return (
     <MapboxGL.MapView
-      // userTrackingMode={MapboxGL.UserTrackingModes.Follow}
       rotateEnabled={false}
       pitchEnabled={false}
       scrollEnabled={true}
@@ -46,16 +46,20 @@ export const DemoMap = ({ centerCoordinate, style, zoomLevel = 11 }: Props) => {
 
       <MapboxGL.ShapeSource
         id='guildCreate'
+        // onPress={(e) => console.log(e.features)}
+        onPress={() => Alert.alert('PlebLab!')}
         // @ts-expect-error 1005
-        shape={guildShape}
-        onPress={(e) => console.log(e.features)}>
-        <MapboxGL.SymbolLayer id='guildImage' style={MapStyles.layerStyles.profileImage} />
+        shape={guildShape}>
+        <MapboxGL.SymbolLayer id='guildImage' style={MapStyles.layerStyles.bigGuildImage} />
       </MapboxGL.ShapeSource>
       <MapboxGL.Images images={mapImages} />
+      {/* <MapboxGL.MarkerView coordinate={centerCoordinate} id='wat'>
+        <View style={{ width: 30, height: 30, backgroundColor: 'green' }} />
+      </MapboxGL.MarkerView> */}
     </MapboxGL.MapView>
   )
 }
 
 const mapImages = {
-  guild: images.guildsActive,
+  guild: images.guildsBig,
 }

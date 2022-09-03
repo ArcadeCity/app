@@ -27,6 +27,12 @@ export const map: ViewStyle = {
 }
 
 export const layerStyles = {
+  bigGuildImage: {
+    // iconImage: 'Rider',
+    iconImage: '{icon}',
+    iconSize: 0.12,
+    iconAllowOverlap: true,
+  },
   profileImage: {
     // iconImage: 'Rider',
     iconImage: '{icon}',
