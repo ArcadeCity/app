@@ -1,6 +1,7 @@
 import React from 'react'
 import { Platform, StyleSheet, View } from 'react-native'
 import { DemoMap, PLEBLAB_COORDS } from 'views/map'
+import { ModelMarker } from 'views/map/markers/ModelMarker'
 import { color } from 'views/theme'
 import MapboxGL from '@rnmapbox/maps'
 
@@ -12,6 +13,7 @@ MapboxGL.setAccessToken(
 export const App = () => {
   return (
     <View style={styles.page}>
+      <ModelMarker />
       <DemoMap
         centerCoordinate={[PLEBLAB_COORDS.longitude, PLEBLAB_COORDS.latitude]}
         zoomLevel={15}

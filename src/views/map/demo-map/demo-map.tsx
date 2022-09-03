@@ -58,18 +58,9 @@ export const DemoMap = ({ centerCoordinate, style, zoomLevel = 11 }: Props) => {
         <MapboxGL.SymbolLayer id='guildImage' style={MapStyles.layerStyles.bigGuildImage} />
       </MapboxGL.ShapeSource> */}
       <MapboxGL.Images images={mapImages} />
-      <MapboxGL.MarkerView coordinate={centerCoordinate} id='wat'>
-        {/* <View style={{ width: 30, height: 30, backgroundColor: 'green' }} /> */}
-        {/* <HelloWorld /> */}
-        {/* <View style={{ width: 200, height: 200 }}>
-          <Breathe />
-        </View> */}
-        {/* <View style={{ opacity: 0.7 }}>
-          <Blue />
-        </View> */}
-        {/* <ImageMarker image={images.pleblab} /> */}
+      {/* <MapboxGL.MarkerView coordinate={centerCoordinate} id='wat'>
         <ModelMarker />
-      </MapboxGL.MarkerView>
+      </MapboxGL.MarkerView> */}
     </MapboxGL.MapView>
   )
 }
