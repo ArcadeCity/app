@@ -11,7 +11,7 @@ interface Props {
   zoomLevel: number
 }
 
-export const StaticMap = ({ centerCoordinate, style, zoomLevel = 11 }: Props) => {
+export const DemoMap = ({ centerCoordinate, style, zoomLevel = 11 }: Props) => {
   const getOneGuildShape = () => {
     const guildFeature: Feature = feature(
       {

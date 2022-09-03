@@ -1,7 +1,6 @@
 import React from 'react'
 import { Platform, StyleSheet, View } from 'react-native'
-import { PLEBLAB_COORDS } from 'views/map/dummyData'
-import { StaticMap } from 'views/map/static-map'
+import { DemoMap, PLEBLAB_COORDS } from 'views/map'
 import { color } from 'views/theme'
 import MapboxGL from '@rnmapbox/maps'
 
@@ -14,7 +13,7 @@ export const App = () => {
   return (
     <View style={styles.page}>
       <View style={styles.container}>
-        <StaticMap
+        <DemoMap
           centerCoordinate={[PLEBLAB_COORDS.longitude, PLEBLAB_COORDS.latitude]}
           zoomLevel={15}
         />

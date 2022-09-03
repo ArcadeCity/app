@@ -1,3 +1,5 @@
+export * from './demo-map'
+export * from './dummyData'
 export * from './FadeInMap'
 export * from './map'
 export * from './mapbox'
