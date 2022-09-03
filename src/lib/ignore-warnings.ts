@@ -5,6 +5,7 @@ import { LogBox } from 'react-native'
 
 if (__DEV__) {
   const ignoreWarns = [
+    'THREE.Box',
     'Constants.platform.ios.model',
     'No native splash screen registered',
     'An error occurred while getting app settings',
