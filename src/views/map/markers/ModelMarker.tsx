@@ -8,7 +8,7 @@ import {
 export const ModelMarker = () => {
   return (
     <GLView
-      style={{ flex: 1, width: 300, height: 300, backgroundColor: 'green' }}
+      style={{ position: 'absolute', flex: 1, top: 0, left: 0, bottom: 0, right: 0, zIndex: 9999 }}
       onContextCreate={onContextCreate}
     />
   )
@@ -21,14 +21,14 @@ const onContextCreate = async (gl) => {
   // Create a WebGLRenderer without a DOM element
   const renderer = new Renderer({ gl })
   renderer.setSize(width, height)
-  renderer.setClearColor(sceneColor)
+  // renderer.setClearColor(sceneColor)
 
   const camera = new PerspectiveCamera(70, width / height, 0.01, 1000)
   camera.position.set(2, 5, 5)
 
   const scene = new Scene()
   scene.fog = new Fog(sceneColor, 1, 10000)
-  scene.add(new GridHelper(10, 10))
+  // scene.add(new GridHelper(10, 10))
 
   const ambientLight = new AmbientLight(0x101010)
   scene.add(ambientLight)
