@@ -15,6 +15,7 @@ export const images = {
   mapActive: require('../../../assets/images/map-active.png'),
   next: require('../../../assets/images/next.png'),
   pickup: require('../../../assets/images/pickup_icon.png'),
+  pleblab: require('../../../assets/images/pleblab.jpg'),
   rider: require('../../../assets/images/riderguy.png'),
   splash: require('../../../assets/images/splash.png'),
 }
