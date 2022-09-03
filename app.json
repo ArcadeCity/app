@@ -21,9 +21,12 @@
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "arcade.city.mobile",
-      "buildNumber": "2",
+      "buildNumber": "3",
       "config": {
         "usesNonExemptEncryption": false
+      },
+      "infoPlist": {
+        "NSLocationWhenInUseUsageDescription": "Arcade City uses your location to find nearby friends and events."
       }
     },
     "android": {
