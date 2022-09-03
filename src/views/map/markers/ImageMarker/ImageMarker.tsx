@@ -1,5 +1,5 @@
 import React from 'react'
-import { Canvas, Circle, Group, Image, LinearGradient, useImage, vec } from '@shopify/react-native-skia'
+import { BlurMask, Canvas, Circle, Image, LinearGradient, useImage, vec } from '@shopify/react-native-skia'
 
 export const ImageMarker = ({ image }) => {
   const usedImage = useImage(image)
@@ -12,7 +12,8 @@ export const ImageMarker = ({ image }) => {
   return (
     <Canvas style={{ width, height }}>
       <Circle cx={r} cy={r} r={r}>
-        <LinearGradient start={vec(0, 0)} end={vec(3 * r, 3 * r)} colors={['#0061ff', '#60efff']} />
+        <LinearGradient start={vec(0, 0)} end={vec(3 * r, 3 * r)} colors={['#fff', '#fff']} />
+        <BlurMask blur={35} />
       </Circle>
       <Image
         image={usedImage}
