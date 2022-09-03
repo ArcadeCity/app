@@ -50,6 +50,7 @@
     "expo-constants": "~13.2.4",
     "expo-dev-client": "~1.2.1",
     "expo-font": "~10.2.0",
+    "expo-gl": "~11.4.0",
     "expo-linking": "~3.2.2",
     "expo-localization": "~13.1.0",
     "expo-random": "~12.3.0",
