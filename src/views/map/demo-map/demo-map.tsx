@@ -43,8 +43,12 @@ export const DemoMap = ({ centerCoordinate, style, zoomLevel = 11 }: Props) => {
           zoomLevel,
         }}
       />
-      {/* @ts-expect-error 1005 */}
-      <MapboxGL.ShapeSource id='guildCreate' shape={guildShape}>
+
+      <MapboxGL.ShapeSource
+        id='guildCreate'
+        // @ts-expect-error 1005
+        shape={guildShape}
+        onPress={(e) => console.log(e.features)}>
         <MapboxGL.SymbolLayer id='guildImage' style={MapStyles.layerStyles.profileImage} />
       </MapboxGL.ShapeSource>
       <MapboxGL.Images images={mapImages} />
