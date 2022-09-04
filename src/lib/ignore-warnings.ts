@@ -48,8 +48,6 @@ if (__DEV__) {
 
   LogBox.ignoreLogs(ignoreWarns)
 
-  // const ignoreLogs = []
-
   const error = console.error
   console.error = (...arg) => {
     for (const warning of ignoreWarns) {
@@ -59,14 +57,4 @@ if (__DEV__) {
     }
     error(...arg)
   }
-
-  // const log = console.log
-  // console.log = (...arg) => {
-  //   for (const warning of ignoreLogs) {
-  //     if (arg[0].startsWith(warning)) {
-  //       return
-  //     }
-  //   }
-  //   log(...arg)
-  // }
 }
