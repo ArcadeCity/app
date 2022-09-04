@@ -1,9 +1,7 @@
 import React from 'react'
-import { Platform, StyleSheet, View } from 'react-native'
-import { DemoMap } from 'views/map/demo-map'
-import { PLEBLAB_COORDS } from 'views/map/dummyData'
-import { color } from 'views/theme'
+import { Platform } from 'react-native'
 import MapboxGL from '@rnmapbox/maps'
+import { MapIdle } from '../map-idle'
 
 MapboxGL.setWellKnownTileServer(Platform.OS === 'android' ? 'Mapbox' : 'mapbox')
 MapboxGL.setAccessToken(
@@ -11,22 +9,5 @@ MapboxGL.setAccessToken(
 )
 
 export const MapHome = () => {
-  return (
-    <View style={styles.page}>
-      <DemoMap
-        centerCoordinate={[PLEBLAB_COORDS.longitude, PLEBLAB_COORDS.latitude]}
-        zoomLevel={15}
-      />
-    </View>
-  )
+  return <MapIdle />
 }
-
-const styles = StyleSheet.create({
-  page: {
-    alignItems: 'center',
-    backgroundColor: color.background,
-    flex: 1,
-    justifyContent: 'center',
-    width: '100%',
-  },
-})
