@@ -9,7 +9,6 @@ import { Coordinate } from '../mapbox/mapbox.props'
 import * as MapStyles from '../mapbox/mapbox.styles'
 import { ImageMarker } from '../markers'
 import { Blue } from '../markers/Blue'
-import { ModelMarker } from '../markers/ModelMarker'
 
 interface Props {
   centerCoordinate: Coordinate
@@ -49,18 +48,18 @@ export const DemoMap = ({ centerCoordinate, style, zoomLevel = 11 }: Props) => {
         }}
       />
 
-      {/* <MapboxGL.ShapeSource
+      <MapboxGL.ShapeSource
         id='guildCreate'
         // onPress={(e) => console.log(e.features)}
         onPress={() => Alert.alert('PlebLab!')}
         // @ts-expect-error 1005
         shape={guildShape}>
         <MapboxGL.SymbolLayer id='guildImage' style={MapStyles.layerStyles.bigGuildImage} />
-      </MapboxGL.ShapeSource> */}
+      </MapboxGL.ShapeSource>
       <MapboxGL.Images images={mapImages} />
-      <MapboxGL.MarkerView coordinate={centerCoordinate} id='wat'>
+      {/* <MapboxGL.MarkerView coordinate={centerCoordinate} id='wat'>
         <ModelMarker />
-      </MapboxGL.MarkerView>
+      </MapboxGL.MarkerView> */}
     </MapboxGL.MapView>
   )
 }
