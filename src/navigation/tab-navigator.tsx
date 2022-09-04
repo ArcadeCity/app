@@ -1,5 +1,5 @@
 import React from 'react'
-import { Pressable, View, ViewStyle } from 'react-native'
+import { Platform, Pressable, View, ViewStyle } from 'react-native'
 import { AccountHome } from 'views/account/AccountHome'
 import { ChatHome } from 'views/chat/ChatHome'
 // import { MapHome } from 'views/map/MapHome'
@@ -31,10 +31,8 @@ export function BottomTabNavigator() {
           backgroundColor: color.tabbar,
           borderTopWidth: 2,
           borderTopColor: palette.portGore,
-          // paddingTop: 10,
-          height: 90,
-          // paddingBottom: 10,
-          // marginBottom: 10,
+          height: Platform.OS === 'ios' ? 90 : 70,
+          paddingBottom: Platform.OS === 'ios' ? 30 : 15,
         },
       }}>
       <BottomTab.Screen
