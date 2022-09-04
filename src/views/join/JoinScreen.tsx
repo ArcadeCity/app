@@ -1,6 +1,6 @@
 import { hexToNpub } from 'lib/nostr'
 import { observer } from 'mobx-react-lite'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Alert, StyleSheet, Text as RNText, TextInput, TouchableOpacity, View } from 'react-native'
 import { useStores } from 'stores/root-store'
 import { Button } from 'views/entry/Button'
@@ -10,6 +10,13 @@ import { FontAwesome } from '@expo/vector-icons'
 
 export const JoinScreen = observer(({ navigation }: any) => {
   const { user } = useStores()
+  useEffect(() => {
+    if (!user.isAuthed) {
+      setTimeout(() => {
+        user.createKeypair()
+      }, 500)
+    }
+  }, [user.isAuthed])
   const [username, setUsername] = useState('')
   const [displayName, setDisplayName] = useState('')
   const [about, setAbout] = useState('')
