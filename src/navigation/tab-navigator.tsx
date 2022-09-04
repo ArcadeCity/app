@@ -30,7 +30,10 @@ export function BottomTabNavigator() {
           backgroundColor: color.tabbar,
           borderTopWidth: 2,
           borderTopColor: palette.portGore,
-          paddingTop: 10,
+          // paddingTop: 10,
+          height: 90,
+          // paddingBottom: 10,
+          // marginBottom: 10,
         },
       }}>
       <BottomTab.Screen
@@ -146,7 +149,7 @@ function TabBarIcon(props: {
 
 const ACTIVE_INDICATOR: ViewStyle = {
   position: 'absolute',
-  bottom: -8,
+  bottom: -2,
   height: 4,
   width: 4,
   borderRadius: 2,
