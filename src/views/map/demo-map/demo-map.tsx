@@ -58,9 +58,9 @@ export const DemoMap = ({ centerCoordinate, style, zoomLevel = 11 }: Props) => {
         <MapboxGL.SymbolLayer id='guildImage' style={MapStyles.layerStyles.bigGuildImage} />
       </MapboxGL.ShapeSource> */}
       <MapboxGL.Images images={mapImages} />
-      {/* <MapboxGL.MarkerView coordinate={centerCoordinate} id='wat'>
+      <MapboxGL.MarkerView coordinate={centerCoordinate} id='wat'>
         <ModelMarker />
-      </MapboxGL.MarkerView> */}
+      </MapboxGL.MarkerView>
     </MapboxGL.MapView>
   )
 }

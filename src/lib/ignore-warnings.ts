@@ -5,6 +5,7 @@ import { LogBox } from 'react-native'
 
 if (__DEV__) {
   const ignoreWarns = [
+    'EXGL: gl.pixelStorei',
     'THREE.Box',
     'Constants.platform.ios.model',
     'No native splash screen registered',

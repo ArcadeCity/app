@@ -1,14 +1,22 @@
 import { ExpoWebGLRenderingContext, GLView } from 'expo-gl'
 import { Renderer, TextureLoader } from 'expo-three'
 import {
-  AmbientLight, BoxBufferGeometry, Fog, GridHelper, Mesh, MeshStandardMaterial, PerspectiveCamera, PointLight,
+  AmbientLight, BoxGeometry, Fog, GridHelper, Mesh, MeshStandardMaterial, PerspectiveCamera, PointLight,
   Scene, SpotLight
 } from 'three'
 
 export const ModelMarker = () => {
   return (
     <GLView
-      style={{ position: 'absolute', flex: 1, top: 0, left: 0, bottom: 0, right: 0, zIndex: 9999 }}
+      style={{
+        position: 'absolute',
+        flex: 1,
+        top: 0,
+        left: 0,
+        bottom: 0,
+        right: 0,
+        zIndex: 9999,
+      }}
       onContextCreate={onContextCreate}
     />
   )
@@ -114,7 +122,7 @@ const onContextCreate = async (gl) => {
 class IconMesh extends Mesh {
   constructor() {
     super(
-      new BoxBufferGeometry(1.0, 1.0, 1.0),
+      new BoxGeometry(1.0, 1.0, 1.0),
       new MeshStandardMaterial({
         map: new TextureLoader().load(require('./icon.jpg')),
       })
