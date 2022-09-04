@@ -1,10 +1,11 @@
 import React from 'react'
-import { Pressable, View, ViewStyle } from 'react-native'
+import { Platform, Pressable, View, ViewStyle } from 'react-native'
 import { AccountHome } from 'views/account/AccountHome'
 import { ChatHome } from 'views/chat/ChatHome'
 // import { MapHome } from 'views/map/MapHome'
 import { Placeholder } from 'views/dev'
 import { FeedHome } from 'views/feed/FeedHome'
+import { MapHome } from 'views/map'
 import { color, palette, typography } from 'views/theme'
 import { FontAwesome, FontAwesome5 } from '@expo/vector-icons'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
@@ -21,7 +22,7 @@ const BottomTab = createBottomTabNavigator<RootTabParamList>()
 export function BottomTabNavigator() {
   return (
     <BottomTab.Navigator
-      initialRouteName='ChatHome'
+      initialRouteName='MapHome'
       screenOptions={{
         tabBarActiveTintColor: palette.moonRaker,
         tabBarInactiveTintColor: palette.blueBell,
@@ -30,9 +31,21 @@ export function BottomTabNavigator() {
           backgroundColor: color.tabbar,
           borderTopWidth: 2,
           borderTopColor: palette.portGore,
-          paddingTop: 10,
+          height: Platform.OS === 'ios' ? 90 : 70,
+          paddingBottom: Platform.OS === 'ios' ? 30 : 15,
         },
       }}>
+      <BottomTab.Screen
+        name='MapHome'
+        component={MapHome}
+        options={({ navigation }: RootTabScreenProps<'MapHome'>) => ({
+          title: 'Feed',
+          tabBarIcon: ({ color, focused }) => (
+            <TabBarIcon name='globe-americas' color={color} focused={focused} />
+          ),
+          headerShown: false,
+        })}
+      />
       <BottomTab.Screen
         name='ChatHome'
         component={ChatNavigator}
@@ -52,39 +65,7 @@ export function BottomTabNavigator() {
           },
         }}
       />
-      <BottomTab.Screen
-        name='FeedHome'
-        component={FeedHome}
-        options={({ navigation }: RootTabScreenProps<'FeedHome'>) => ({
-          title: 'Feed',
-          tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name='globe-americas' color={color} focused={focused} />
-          ),
-          headerStyle: {
-            backgroundColor: color.tabbar,
-            borderBottomWidth: 2,
-            borderBottomColor: palette.portGore,
-          },
-          headerTitleStyle: {
-            color: color.text,
-            fontFamily: typography.secondary,
-          },
-          // headerRight: () => (
-          //   <Pressable
-          //     onPress={() => navigation.navigate('Modal')}
-          //     style={({ pressed }) => ({
-          //       opacity: pressed ? 0.5 : 1,
-          //     })}>
-          //     <FontAwesome
-          //       name='info-circle'
-          //       size={25}
-          //       color={palette.moonRaker}
-          //       style={{ marginRight: 15 }}
-          //     />
-          //   </Pressable>
-          // ),
-        })}
-      />
+
       {/* <BottomTab.Screen
         name='WalletHome'
         component={Placeholder}
@@ -146,7 +127,7 @@ function TabBarIcon(props: {
 
 const ACTIVE_INDICATOR: ViewStyle = {
   position: 'absolute',
-  bottom: -8,
+  bottom: -2,
   height: 4,
   width: 4,
   borderRadius: 2,
