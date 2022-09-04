@@ -36,17 +36,6 @@ export function BottomTabNavigator() {
         },
       }}>
       <BottomTab.Screen
-        name='MapHome'
-        component={MapHome}
-        options={({ navigation }: RootTabScreenProps<'MapHome'>) => ({
-          title: 'Feed',
-          tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name='globe-americas' color={color} focused={focused} />
-          ),
-          headerShown: false,
-        })}
-      />
-      <BottomTab.Screen
         name='ChatHome'
         component={ChatNavigator}
         options={{
@@ -64,6 +53,18 @@ export function BottomTabNavigator() {
             fontFamily: typography.secondary,
           },
         }}
+      />
+
+      <BottomTab.Screen
+        name='MapHome'
+        component={MapHome}
+        options={({ navigation }: RootTabScreenProps<'MapHome'>) => ({
+          title: 'Feed',
+          tabBarIcon: ({ color, focused }) => (
+            <TabBarIcon name='globe-americas' color={color} focused={focused} />
+          ),
+          headerShown: false,
+        })}
       />
 
       {/* <BottomTab.Screen
