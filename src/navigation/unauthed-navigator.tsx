@@ -16,7 +16,7 @@ export function UnauthedNavigator() {
   const { user } = useStores()
   useEffect(() => {
     if (!user.isAuthed) {
-      user.createKeypair()
+      user.loginFromStoredKeys()
     }
   }, [user.isAuthed])
   return (

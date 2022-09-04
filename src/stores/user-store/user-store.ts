@@ -18,6 +18,8 @@ export const UserStoreModel = types
   .actions((self) => ({
     createKeypair: async (): Promise<void> => await actions.createKeypair(self as UserStore),
     login: async (text: string): Promise<boolean> => await actions.login(self as UserStore, text),
+    loginFromStoredKeys: async (): Promise<boolean> =>
+      await actions.loginFromStoredKeys(self as UserStore),
     logout: async (): Promise<void> => await actions.logout(self as UserStore),
     signup: async (props: actions.SignupProps): Promise<boolean> =>
       await actions.signup(self as UserStore, props),
