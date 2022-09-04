@@ -1,3 +1,4 @@
+import { useNostr } from 'lib/hooks'
 import { observer } from 'mobx-react-lite'
 import { useEffect } from 'react'
 import { useStores } from 'stores/root-store'
@@ -10,6 +11,8 @@ import { UnauthedNavigator } from './unauthed-navigator'
 export const Navigation = observer(() => {
   const { user } = useStores()
 
+  useNostr()
+
   // Whenever user's keys change in store, also update the Nostr service
   useEffect(() => {
     if (!user.publicKey || !user.privateKey) return
@@ -18,7 +21,7 @@ export const Navigation = observer(() => {
 
   return (
     <NavigationContainer linking={LinkingConfiguration} theme={navTheme}>
-      {user.isAuthed ? <RootNavigator /> : <UnauthedNavigator />}
+      {user.isOnboarded ? <RootNavigator /> : <UnauthedNavigator />}
     </NavigationContainer>
   )
 })

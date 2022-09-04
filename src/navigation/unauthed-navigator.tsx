@@ -1,3 +1,4 @@
+import { display } from 'lib'
 import React, { useEffect } from 'react'
 import { useStores } from 'stores/root-store'
 import { HomeScreen } from 'views/entry/HomeScreen'
@@ -15,10 +16,15 @@ const Stack = createNativeStackNavigator<{
 export function UnauthedNavigator() {
   const { user } = useStores()
   useEffect(() => {
-    if (!user.isAuthed) {
-      user.createKeypair()
+    if (!user.isOnboarded) {
+      display({
+        name: 'UnauthedNavigator',
+        preview: 'Calling login from stored keys cuz not onboarded??',
+        value: user.isOnboarded,
+      })
+      user.loginFromStoredKeys()
     }
-  }, [user.isAuthed])
+  }, [user.isOnboarded])
   return (
     <Stack.Navigator>
       <Stack.Screen

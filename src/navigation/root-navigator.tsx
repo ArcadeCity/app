@@ -16,7 +16,6 @@ import { RootStackParamList } from './types'
 const Stack = createNativeStackNavigator<RootStackParamList>()
 
 export function RootNavigator() {
-  useNostr()
   return (
     <Stack.Navigator>
       <Stack.Screen name='Root' component={BottomTabNavigator} options={{ headerShown: false }} />

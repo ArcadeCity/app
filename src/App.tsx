@@ -1,33 +1,52 @@
-import React from 'react'
-import { Platform, StyleSheet, View } from 'react-native'
-import { DemoMap, PLEBLAB_COORDS } from 'views/map'
-import { ModelMarker } from 'views/map/markers/ModelMarker'
-import { color } from 'views/theme'
-import MapboxGL from '@rnmapbox/maps'
-
-MapboxGL.setWellKnownTileServer(Platform.OS === 'android' ? 'Mapbox' : 'mapbox')
-MapboxGL.setAccessToken(
-  'pk.eyJ1IjoiYWNsaW9ucyIsImEiOiJjamVhMmNtY2swaXNtMnBsbnB2aDVqNTBiIn0.gM_i1jhawFz2EpKBX4VmwQ'
-)
+import 'expo-dev-client'
+import 'text-encoding-polyfill'
+import 'lib/ignore-warnings'
+import { StatusBar } from 'expo-status-bar'
+import { useCachedResources, useExpoUpdates } from 'lib/hooks'
+import { useEffect, useMemo, useState } from 'react'
+import { SafeAreaProvider } from 'react-native-safe-area-context'
+import { RootStore, RootStoreProvider, setupRootStore } from 'stores/root-store'
+import { LoadSplash } from 'views/loading'
+import { Navigation } from './navigation'
 
 export const App = () => {
+  const [rootStore, setRootStore] = useState<RootStore | undefined>(undefined)
+  const [ready, setReady] = useState(false)
+  const isLoadingComplete = useCachedResources()
+  useExpoUpdates(3)
+
+  useEffect(() => {
+    ;(async () => {
+      try {
+        // await initFonts()
+        const initStore = await setupRootStore(null)
+        setRootStore(initStore)
+        // await delay(500)
+        setReady(true)
+      } catch (e: any) {
+        // notify(e)
+        console.log(e)
+      }
+    })()
+  }, [])
+
+  const componentToRender = useMemo(() => {
+    return !isLoadingComplete || !ready || !rootStore ? (
+      <LoadSplash ready={false} />
+    ) : (
+      <RootStoreProvider value={rootStore}>
+        <SafeAreaProvider>
+          <Navigation />
+        </SafeAreaProvider>
+      </RootStoreProvider>
+    )
+  }, [isLoadingComplete, ready, rootStore])
+
   return (
-    <View style={styles.page}>
-      <ModelMarker />
-      <DemoMap
-        centerCoordinate={[PLEBLAB_COORDS.longitude, PLEBLAB_COORDS.latitude]}
-        zoomLevel={15}
-      />
-    </View>
+    <>
+      <StatusBar style='light' />
+      <LoadSplash ready={isLoadingComplete} />
+      {componentToRender}
+    </>
   )
 }
-
-const styles = StyleSheet.create({
-  page: {
-    alignItems: 'center',
-    backgroundColor: color.background,
-    flex: 1,
-    justifyContent: 'center',
-    width: '100%',
-  },
-})
