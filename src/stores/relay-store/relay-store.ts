@@ -1,4 +1,5 @@
 import { isArrayInArray } from 'lib/isArrayInArray'
+import { keyBy } from 'lodash'
 import { values } from 'mobx'
 import { applySnapshot, Instance, SnapshotOut, types } from 'mobx-state-tree'
 import { withEnvironment, withRootStore } from '../_extensions'
@@ -33,6 +34,11 @@ export const RelayStoreModel = types
     /** Save event to store */
     addEvent: (event: Event) => {
       self.events.set(event.id, event)
+    },
+    /** Save tons of events to store */
+    addEvents: (events: Event[]) => {
+      const obj = keyBy(events, (e) => e.id)
+      self.events.merge(obj)
     },
     /** Save user metadata to store */
     addUserMetadata: (metadata: UserMetadata) => {
