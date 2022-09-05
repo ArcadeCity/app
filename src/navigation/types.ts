@@ -32,6 +32,7 @@ export type RootStackScreenProps<Screen extends keyof RootStackParamList> = Nati
 export type RootTabParamList = {
   ChatHome: undefined
   AccountHome: undefined
+  GridHome: undefined
   // FeedHome: undefined
   MapHome: undefined
   // WalletHome: undefined

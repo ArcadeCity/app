@@ -4,5 +4,7 @@ const projectRoot = __dirname
 const config = getDefaultConfig(projectRoot)
 
 config.resolver.extraNodeModules = extraNodeModules
+config.resolver.sourceExts.push('cjs')
+config.resolver.assetExts.push('glb', 'gltf')
 
 module.exports = config

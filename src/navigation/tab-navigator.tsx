@@ -5,6 +5,7 @@ import { ChatHome } from 'views/chat/ChatHome'
 // import { MapHome } from 'views/map/MapHome'
 import { Placeholder } from 'views/dev'
 import { FeedHome } from 'views/feed/FeedHome'
+import { GridHome } from 'views/grid/GridHome'
 import { MapHome } from 'views/map'
 import { color, palette, typography } from 'views/theme'
 import { FontAwesome, FontAwesome5 } from '@expo/vector-icons'
@@ -62,6 +63,18 @@ export function BottomTabNavigator() {
           title: 'Feed',
           tabBarIcon: ({ color, focused }) => (
             <TabBarIcon name='globe-americas' color={color} focused={focused} />
+          ),
+          headerShown: false,
+        })}
+      />
+
+      <BottomTab.Screen
+        name='GridHome'
+        component={GridHome}
+        options={({ navigation }: RootTabScreenProps<'GridHome'>) => ({
+          title: 'Feed',
+          tabBarIcon: ({ color, focused }) => (
+            <TabBarIcon name='globe' color={color} focused={focused} />
           ),
           headerShown: false,
         })}
