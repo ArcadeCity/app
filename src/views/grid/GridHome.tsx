@@ -1,5 +1,6 @@
 import React, { useRef, useState } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber/native'
+import { DeviceOrientationControls } from './DeviceOrientationControls'
 
 function Box(props) {
   const mesh = useRef<any>(null)
@@ -27,6 +28,7 @@ export function GridHome() {
       <pointLight position={[10, 10, 10]} />
       <Box position={[-1.2, 0, 0]} />
       <Box position={[1.2, 0, 0]} />
+      <DeviceOrientationControls />
     </Canvas>
   )
 }
