@@ -62,6 +62,7 @@
     "expo-updates": "~0.14.5",
     "expo-web-browser": "~11.0.0",
     "i18n-js": "3.9.2",
+    "lodash": "4.17.21",
     "mobx": "^6.6.1",
     "mobx-react-lite": "^3.4.0",
     "mobx-state-tree": "^5.1.6",
@@ -84,6 +85,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
+    "@types/lodash": "4.14.184",
     "@types/react": "~18.0.14",
     "@types/react-native": "~0.69.1",
     "jest": "^26.6.3",
