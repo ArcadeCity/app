@@ -1,4 +1,6 @@
 import { display } from 'lib'
+import { delay } from 'lib/delay'
+import { Event } from '../relay-models'
 import { RelayStore } from '../relay-store'
 
 export const connect = async (self: RelayStore) => {
@@ -26,6 +28,27 @@ export const connect = async (self: RelayStore) => {
     }
   }
 
+  await delay(1000)
+
+  const fetchChat = await fetch('https://ndxstr.arcade.city/chat')
+  const res = await fetchChat.json()
+
+  const eventsToSave: Event[] = []
+  res.forEach((rawEvent: any) => {
+    const event: Event = {
+      id: rawEvent.id,
+      kind: rawEvent.event_kind,
+      pubkey: Buffer.from(rawEvent.event_pubkey).toString('hex'),
+      content: rawEvent.event_content,
+      created_at: rawEvent.event_created_at,
+      sig: 'dontcare',
+      tags: rawEvent.event_tags,
+    }
+    eventsToSave.push(event)
+  })
+
+  self.addEvents(eventsToSave)
+
   // Subscribe only to the channels we started
   self.env.nostr.pool.sub({
     cb: onEvent,
@@ -37,6 +60,14 @@ export const connect = async (self: RelayStore) => {
         '6c1ab7e5f8cf33874e5b9d85e000c0683d3133ec8294a5009d2f38854aceafb0',
         '9cb8bf059ae86df40407cfa5871c2111b09d3fb2c85c5be67306fcf6b3bab729',
       ],
+    },
+  })
+
+  self.env.nostr.pool.sub({
+    cb: onEvent,
+    filter: {
+      kinds: [42],
+      limit: 0,
     },
   })
 
