@@ -5,7 +5,7 @@ export function SplineTest({ ...props }) {
   const { nodes } = useSpline('https://staging.arcade.city/untitled.spline')
 
   return (
-    <group {...props} dispose={null}>
+    <group {...props} dispose={null} position={[0, -2, -15]} scale={0.01}>
       <Float object={nodes['Sphere']} />
     </group>
   )
