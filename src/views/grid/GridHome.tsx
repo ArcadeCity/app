@@ -29,6 +29,7 @@ export function GridHome() {
       <pointLight position={[10, 10, 10]} />
       <Box position={[-1.2, 0, 0]} />
       <Box position={[1.2, 0, 0]} />
+      <gridHelper position={[0, -5, -5]} scale={1.5} />
       <Suspense fallback={null}>
         <SplineTest />
       </Suspense>
