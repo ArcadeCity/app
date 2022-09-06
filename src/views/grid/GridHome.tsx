@@ -1,6 +1,7 @@
-import React, { useRef, useState } from 'react'
+import React, { Suspense, useRef, useState } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber/native'
 import { DeviceOrientationControls } from './DeviceOrientationControls'
+import { SplineTest } from './SplineTest'
 
 function Box(props) {
   const mesh = useRef<any>(null)
@@ -28,6 +29,9 @@ export function GridHome() {
       <pointLight position={[10, 10, 10]} />
       <Box position={[-1.2, 0, 0]} />
       <Box position={[1.2, 0, 0]} />
+      <Suspense fallback={null}>
+        <SplineTest />
+      </Suspense>
       <DeviceOrientationControls />
     </Canvas>
   )
