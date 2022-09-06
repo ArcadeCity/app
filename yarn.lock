@@ -2326,6 +2326,16 @@
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
+"@splinetool/loader@0.9.105":
+  version "0.9.105"
+  resolved "https://registry.yarnpkg.com/@splinetool/loader/-/loader-0.9.105.tgz#e69e2fa9b97f34a3bc17252cc95c96294eec9efd"
+  integrity sha512-4KwwsxS321s7MjtSv0wswbDHSO1JjOn5X7NXgd4xjmR0Wujr4fNZkJuXw54NfKxfWgtTZ3bl+DBbBKXry40Kuw==
+
+"@splinetool/r3f-spline@1.0.2":
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@splinetool/r3f-spline/-/r3f-spline-1.0.2.tgz#557b09815ec11d4695ecd9a8fb0f34915d985b2c"
+  integrity sha512-Fl1qboRpTE8yJm4BAe1l6j3Xgh3HwIzvtdX2LjCpBiSo21+j0b2rilJpLHfsXJndrq4Hegz6oEUKlPvVWumaHg==
+
 "@tootallnate/once@1":
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/@tootallnate/once/-/once-1.1.2.tgz#ccb91445360179a04e7fe6aff78c00ffc1eeaf82"

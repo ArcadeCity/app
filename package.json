@@ -41,6 +41,8 @@
     "@react-three/fiber": "8.7.1",
     "@rnmapbox/maps": "rnmapbox/maps#main",
     "@shopify/react-native-skia": "0.1.141",
+    "@splinetool/loader": "0.9.105",
+    "@splinetool/r3f-spline": "1.0.2",
     "bech32": "^2.0.0",
     "bip-schnorr": "^0.6.6",
     "bip32": "^3.0.1",
