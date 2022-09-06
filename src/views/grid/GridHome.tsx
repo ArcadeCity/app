@@ -2,6 +2,7 @@ import React, { Suspense, useRef, useState } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber/native'
 import { DeviceOrientationControls } from './DeviceOrientationControls'
 import { SplineTest } from './SplineTest'
+import { Stars } from './Stars'
 
 function Box(props) {
   const mesh = useRef<any>(null)
@@ -34,6 +35,7 @@ export function GridHome() {
         <SplineTest />
       </Suspense>
       <DeviceOrientationControls />
+      <Stars />
     </Canvas>
   )
 }
