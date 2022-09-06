@@ -1,0 +1,11 @@
+diff --git a/node_modules/@splinetool/r3f-spline/dist/useSpline.es.js b/node_modules/@splinetool/r3f-spline/dist/useSpline.es.js
+index ed82c2d..8e35444 100644
+--- a/node_modules/@splinetool/r3f-spline/dist/useSpline.es.js
++++ b/node_modules/@splinetool/r3f-spline/dist/useSpline.es.js
+@@ -1,5 +1,5 @@
+ import SplineLoader from "@splinetool/loader";
+-import { useLoader, useGraph } from "@react-three/fiber";
++import { useLoader, useGraph } from "@react-three/fiber/native";
+ function useSpline(url) {
+   const scene = useLoader(SplineLoader, url);
+   return useGraph(scene);
