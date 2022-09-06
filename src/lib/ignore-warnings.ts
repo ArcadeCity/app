@@ -5,6 +5,9 @@ import { LogBox } from 'react-native'
 
 if (__DEV__) {
   const ignoreWarns = [
+    'The SplineLoader only accepts',
+    'THREE.SphereBufferGeometry has been renamed to THREE.SphereGeometry.',
+    "THREE.WebGLProgram: Program Info Log: WARNING: Output of vertex shader 'vWPosition' not read by fragment shader",
     'EXGL: gl.pixelStorei',
     'THREE.Box',
     'Constants.platform.ios.model',
